@@ -1,13 +1,9 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core'
+import {OnInit} from '@angular/core'
 import {Router} from '@angular/router'
 
 import {GlobalEventsService} from '..//services/globalEvents/globalEvents.service'
 import GESRedirectOptionsInterface from '..//services/globalEvents/globalEvents.interfaces'
 
-@Component({
-	selector: 'app',
-	encapsulation: ViewEncapsulation.None
-})
 export class BaseLayoutComponent implements OnInit {
 	initialDataLoaded: boolean = false
 	loaderActive: boolean = false
