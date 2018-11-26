@@ -1,3 +1,6 @@
+# 0.0.3
+Moved all deps to peerDeps.
+
 # 0.0.2
 BaseLayoutComponent fix.
 

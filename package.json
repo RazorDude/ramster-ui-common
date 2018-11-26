@@ -1,6 +1,6 @@
 {
   "name": "ramster-ui-core",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An angular.io-based ui toolkit repo.",
   "main": "",
   "scripts": {},
@@ -16,7 +16,7 @@
     "url": "https://github.com/RazorDude/ramster-ui-common/issues"
   },
   "license": "MIT",
-  "dependencies": {
+  "peerDependencies": {
     "@angular/common": "^7.1.0",
     "@angular/core": "^7.1.0",
     "@angular/router": "^7.1.0",
