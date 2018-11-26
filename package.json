@@ -1,0 +1,16 @@
+{
+  "name": "ramster-ui-core",
+  "version": "0.0.1",
+  "description": "An angular.io-based ui toolkit repo.",
+  "main": "",
+  "scripts": {},
+  "author": "Rumen Rumenov <mmetalonlyy@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@angular/common": "^7.1.0",
+    "@angular/core": "^7.1.0",
+    "@angular/router": "^7.1.0",
+    "co": "^4.6.0",
+    "rxjs": "^6.3.3"
+  }
+}

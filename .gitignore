@@ -1,0 +1,12 @@
+node_modules
+.eslintrc
+.jsbeautifyrc
+.pug-lintrc
+error.log
+npm-debug.log
+debug.log
+.vscode
+test
+!test/generateStuff.js
+!test/test.js
+package-lock.json

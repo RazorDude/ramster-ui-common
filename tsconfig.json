@@ -1,0 +1,35 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"target": "es6",
+		"module": "es2015",
+		"moduleResolution": "node",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"allowSyntheticDefaultImports": true,
+		"sourceMap": true,
+		"importHelpers": true,
+		"strictNullChecks": false,
+		"lib": [
+			"es2015",
+			"dom"
+		]
+	},
+	"include": [
+		"./**/*",
+	],
+	"exclude": [
+		"./**/*.spec.ts",
+		"./**/*.e2e.ts"
+	],
+	"awesomeTypescriptLoaderOptions": {
+		"forkChecker": true,
+		"useWebpackText": true
+	},
+	"angularCompilerOptions": {
+		"genDir": "./compiled",
+		"skipMetadataEmit": true
+	},
+	"compileOnSave": false,
+	"buildOnSave": false
+}
