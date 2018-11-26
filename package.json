@@ -4,7 +4,17 @@
   "description": "An angular.io-based ui toolkit repo.",
   "main": "",
   "scripts": {},
-  "author": "Rumen Rumenov <mmetalonlyy@gmail.com>",
+  "author": {
+    "name": "Rumen Rumenov",
+    "email": "mmetalonlyy@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RazorDude/ramster-ui-common.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RazorDude/ramster-ui-common/issues"
+  },
   "license": "MIT",
   "dependencies": {
     "@angular/common": "^7.1.0",
