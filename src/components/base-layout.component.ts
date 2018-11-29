@@ -1,8 +1,9 @@
 import {OnInit} from '@angular/core'
 import {Router} from '@angular/router'
 
-import {GlobalEventsService} from '..//services/globalEvents/globalEvents.service'
-import GESRedirectOptionsInterface from '..//services/globalEvents/globalEvents.interfaces'
+import {GlobalEventsService} from '../services/globalEvents/globalEvents.service'
+import {GESRedirectOptionsInterface} from '../services/globalEvents/globalEvents.interfaces'
+
 
 export class BaseLayoutComponent implements OnInit {
 	initialDataLoaded: boolean = false

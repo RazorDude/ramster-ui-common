@@ -10,3 +10,5 @@ test
 !test/generateStuff.js
 !test/test.js
 package-lock.json
+dist/*
+!dist/main.js

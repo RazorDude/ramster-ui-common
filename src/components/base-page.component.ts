@@ -2,7 +2,7 @@
 
 import {ActivatedRoute} from '@angular/router'
 import {OnDestroy, OnInit} from '@angular/core'
-import {Subject} from 'rxjs/Subject'
+import {Subject} from 'rxjs'
 import {takeUntil} from 'rxjs/operators'
 
 import {GlobalEventsService} from '../services/globalEvents/globalEvents.service'
@@ -23,7 +23,7 @@ export class BasePageComponent implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		this.globalEventsService.initialDataLoaded$.pipe(takeUntil(this.destroyed)).subscribe((data) => this.initialDataLoaded(data))
-		this.onInitMethodNames.forEach((methodName, index) => {
+		this.onInitMethodNames.forEach((methodName) => {
 			if (typeof this[methodName] === 'function') {
 				this[methodName]()
 			}
@@ -40,7 +40,7 @@ export class BasePageComponent implements OnInit, OnDestroy {
 		this.loggedInUser = data.user
 		this.queryParams = data.queryParams
 		this.routeParams = data.routeParams
-		this.onInitialDataLoadedMethodNames.forEach((methodName, index) => {
+		this.onInitialDataLoadedMethodNames.forEach((methodName) => {
 			if (typeof this[methodName] === 'function') {
 				this[methodName](data)
 			}

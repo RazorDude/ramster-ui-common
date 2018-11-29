@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core'
-import {Subject} from 'rxjs/Subject'
-
-import GESRedirectOptionsInterface from './globalEvents.interfaces'
+import {Subject} from 'rxjs'
+import {GESRedirectOptionsInterface} from './globalEvents.interfaces'
 
 @Injectable()
 export class GlobalEventsService {

@@ -13,14 +13,20 @@
 		"lib": [
 			"es2015",
 			"dom"
+		],
+		"typeRoots": [
+			"node_modules/@types"
+		],
+		"types": [
+			"node"
 		]
 	},
 	"include": [
-		"./**/*",
+		"src/**/*"
 	],
 	"exclude": [
-		"./**/*.spec.ts",
-		"./**/*.e2e.ts"
+		"src/**/*.spec.ts",
+		"src/**/*.e2e.ts"
 	],
 	"awesomeTypescriptLoaderOptions": {
 		"forkChecker": true,

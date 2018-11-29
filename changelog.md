@@ -1,3 +1,6 @@
+# 0.0.4
+Whoops! Forgot to build stuff! Hehe :)
+
 # 0.0.3
 Moved all deps to peerDeps.
 
