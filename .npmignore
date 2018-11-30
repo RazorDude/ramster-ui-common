@@ -1,3 +1,2 @@
 ./test
-dist/*
-!dist/main.js
+node_modules
