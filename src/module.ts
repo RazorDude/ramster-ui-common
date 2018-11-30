@@ -18,6 +18,6 @@ import {SelectListInterface} from './interfaces/selectList.interface'
 		CommonModule
 	]
 })
-export class RamsterUICoreModule {}
+class RamsterUICoreModule {}
 
 export {BasePageComponent, BaseLayoutComponent, BaseRESTService, FilesRESTService, getNested, GlobalEventsService, RequestService, SelectListInterface, setNested}

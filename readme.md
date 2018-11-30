@@ -1,5 +1,4 @@
 ![npm](https://img.shields.io/npm/v/ramster-ui-core.svg)
-![node](https://img.shields.io/node/v/ramster-ui-core.svg)
 <br/>
 ramster-ui-core
 ==

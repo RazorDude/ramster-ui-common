@@ -1,3 +1,6 @@
+# 0.0.6
+The app is now being built using ng-packagr.
+
 # 0.0.5
 Added co to vendor.ts.
 Added a build script to package.json.
