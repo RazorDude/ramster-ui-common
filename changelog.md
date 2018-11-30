@@ -1,3 +1,6 @@
+# 0.0.8
+Removed old deps.
+
 # 0.0.7
 Minor tweaks.
 
