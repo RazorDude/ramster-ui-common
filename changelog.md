@@ -1,3 +1,6 @@
+# 0.0.7
+Minor tweaks.
+
 # 0.0.6
 The app is now being built using ng-packagr.
 

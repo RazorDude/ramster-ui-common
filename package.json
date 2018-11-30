@@ -1,8 +1,8 @@
 {
   "name": "ramster-ui-core",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "An angular.io-based ui toolkit repo.",
-  "main": "index.js",
+  "main": "dist/bundles/ramster-ui-core.umd.js",
   "scripts": {
     "build": "ng-packagr -p package.json"
   },
