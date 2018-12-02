@@ -1,24 +1,27 @@
+# 0.0.9
+- Publishing only the dist folder. Naming changes.
+
 # 0.0.8
-Removed old deps.
+- Removed old deps.
 
 # 0.0.7
-Minor tweaks.
+- Minor tweaks.
 
 # 0.0.6
-The app is now being built using ng-packagr.
+- The app is now being built using ng-packagr.
 
 # 0.0.5
-Added co to vendor.ts.
-Added a build script to package.json.
+- Added co to vendor.ts.
+- Added a build script to package.json.
 
 # 0.0.4
-Whoops! Forgot to build stuff! Hehe :)
+- Whoops! Forgot to build stuff! Hehe :)
 
 # 0.0.3
-Moved all deps to peerDeps.
+- Moved all deps to peerDeps.
 
 # 0.0.2
-BaseLayoutComponent fix.
+- BaseLayoutComponent fix.
 
 # 0.0.1
-The initial version.
+- The initial version.
