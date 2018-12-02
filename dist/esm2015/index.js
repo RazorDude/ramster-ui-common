@@ -1,0 +1,26 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+'use strict';
+// angular dependencies
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { BaseLayoutComponent } from './components/base-layout.component';
+import { BasePageComponent } from './components/base-page.component';
+import { BaseRESTService } from './services/baseREST.service';
+import { FilesRESTService } from './services/filesREST.service';
+import { getNested, setNested } from './utils/toolbelt';
+import { GlobalEventsService } from './services/globalEvents/globalEvents.service';
+import { RequestService } from './services/request.service';
+class RamsterUICoreModule {
+}
+RamsterUICoreModule.decorators = [
+    { type: NgModule, args: [{
+                imports: [
+                    CommonModule
+                ]
+            },] }
+];
+export { BasePageComponent, BaseLayoutComponent, BaseRESTService, FilesRESTService, getNested, GlobalEventsService, RequestService, setNested };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290Ijoibmc6Ly9yYW1zdGVyLXVpLWNvcmUvIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsWUFBWSxDQUFBOztBQUdaLE9BQU8sRUFBQyxZQUFZLEVBQUMsTUFBTSxpQkFBaUIsQ0FBQTtBQUM1QyxPQUFPLEVBQUMsUUFBUSxFQUFDLE1BQU0sZUFBZSxDQUFBO0FBRXRDLE9BQU8sRUFBQyxtQkFBbUIsRUFBQyxNQUFNLG9DQUFvQyxDQUFBO0FBQ3RFLE9BQU8sRUFBQyxpQkFBaUIsRUFBQyxNQUFNLGtDQUFrQyxDQUFBO0FBQ2xFLE9BQU8sRUFBQyxlQUFlLEVBQUMsTUFBTSw2QkFBNkIsQ0FBQTtBQUMzRCxPQUFPLEVBQUMsZ0JBQWdCLEVBQUMsTUFBTSw4QkFBOEIsQ0FBQTtBQUM3RCxPQUFPLEVBQUMsU0FBUyxFQUFFLFNBQVMsRUFBQyxNQUFNLGtCQUFrQixDQUFBO0FBQ3JELE9BQU8sRUFBQyxtQkFBbUIsRUFBQyxNQUFNLDhDQUE4QyxDQUFBO0FBQ2hGLE9BQU8sRUFBQyxjQUFjLEVBQUMsTUFBTSw0QkFBNEIsQ0FBQTtBQUd6RCxNQUtNLG1CQUFtQjs7O1lBTHhCLFFBQVEsU0FBQztnQkFDVCxPQUFPLEVBQUU7b0JBQ1IsWUFBWTtpQkFDWjthQUNEOztBQUdELE9BQU8sRUFBQyxpQkFBaUIsRUFBRSxtQkFBbUIsRUFBRSxlQUFlLEVBQUUsZ0JBQWdCLEVBQUUsU0FBUyxFQUFFLG1CQUFtQixFQUFFLGNBQWMsRUFBdUIsU0FBUyxFQUFDLENBQUEiLCJzb3VyY2VzQ29udGVudCI6WyIndXNlIHN0cmljdCdcclxuXHJcbi8vIGFuZ3VsYXIgZGVwZW5kZW5jaWVzXHJcbmltcG9ydCB7Q29tbW9uTW9kdWxlfSBmcm9tICdAYW5ndWxhci9jb21tb24nXHJcbmltcG9ydCB7TmdNb2R1bGV9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnXHJcblxyXG5pbXBvcnQge0Jhc2VMYXlvdXRDb21wb25lbnR9IGZyb20gJy4vY29tcG9uZW50cy9iYXNlLWxheW91dC5jb21wb25lbnQnXHJcbmltcG9ydCB7QmFzZVBhZ2VDb21wb25lbnR9IGZyb20gJy4vY29tcG9uZW50cy9iYXNlLXBhZ2UuY29tcG9uZW50J1xyXG5pbXBvcnQge0Jhc2VSRVNUU2VydmljZX0gZnJvbSAnLi9zZXJ2aWNlcy9iYXNlUkVTVC5zZXJ2aWNlJ1xyXG5pbXBvcnQge0ZpbGVzUkVTVFNlcnZpY2V9IGZyb20gJy4vc2VydmljZXMvZmlsZXNSRVNULnNlcnZpY2UnXHJcbmltcG9ydCB7Z2V0TmVzdGVkLCBzZXROZXN0ZWR9IGZyb20gJy4vdXRpbHMvdG9vbGJlbHQnXHJcbmltcG9ydCB7R2xvYmFsRXZlbnRzU2VydmljZX0gZnJvbSAnLi9zZXJ2aWNlcy9nbG9iYWxFdmVudHMvZ2xvYmFsRXZlbnRzLnNlcnZpY2UnXHJcbmltcG9ydCB7UmVxdWVzdFNlcnZpY2V9IGZyb20gJy4vc2VydmljZXMvcmVxdWVzdC5zZXJ2aWNlJ1xyXG5pbXBvcnQge1NlbGVjdExpc3RJbnRlcmZhY2V9IGZyb20gJy4vaW50ZXJmYWNlcy9zZWxlY3RMaXN0LmludGVyZmFjZSdcclxuXHJcbkBOZ01vZHVsZSh7XHJcblx0aW1wb3J0czogW1xyXG5cdFx0Q29tbW9uTW9kdWxlXHJcblx0XVxyXG59KVxyXG5jbGFzcyBSYW1zdGVyVUlDb3JlTW9kdWxlIHt9XHJcblxyXG5leHBvcnQge0Jhc2VQYWdlQ29tcG9uZW50LCBCYXNlTGF5b3V0Q29tcG9uZW50LCBCYXNlUkVTVFNlcnZpY2UsIEZpbGVzUkVTVFNlcnZpY2UsIGdldE5lc3RlZCwgR2xvYmFsRXZlbnRzU2VydmljZSwgUmVxdWVzdFNlcnZpY2UsIFNlbGVjdExpc3RJbnRlcmZhY2UsIHNldE5lc3RlZH1cclxuIl19

@@ -1,4 +1,4 @@
 /**
  * Generated bundle index. Do not edit.
  */
-export * from './module';
+export * from './index';

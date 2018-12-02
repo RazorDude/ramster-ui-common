@@ -1,7 +1,7 @@
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { __generator, __rest } from 'tslib';
+import { __rest, __generator } from 'tslib';
 import { HttpClient, HttpParams, HttpRequest, HttpHeaders } from '@angular/common/http';
 import co from 'co';
 import '@angular/common';

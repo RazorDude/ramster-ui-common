@@ -3,7 +3,8 @@
   "version": "0.0.9",
   "description": "An angular.io-based ui toolkit repo.",
   "scripts": {
-    "build": "ng-packagr -p package.json"
+    "build": "ng-packagr -p package.json",
+    "publish": "npm publish dist "
   },
   "author": {
     "name": "Rumen Rumenov",

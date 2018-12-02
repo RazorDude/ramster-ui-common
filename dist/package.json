@@ -1,8 +1,7 @@
 {
   "name": "ramster-ui-core",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "An angular.io-based ui toolkit repo.",
-  "main": "bundles/ramster-ui-core.umd.js",
   "author": {
     "name": "Rumen Rumenov",
     "email": "mmetalonlyy@gmail.com"
@@ -40,6 +39,7 @@
     "co": "^4.6.0",
     "rxjs": "^6.3.3"
   },
+  "main": "bundles/ramster-ui-core.umd.js",
   "module": "fesm5/ramster-ui-core.js",
   "es2015": "fesm2015/ramster-ui-core.js",
   "esm5": "esm5/ramster-ui-core.js",
