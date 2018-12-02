@@ -1,3 +1,6 @@
+# 0.0.10
+- Better exports from the main file.
+
 # 0.0.9
 - Publishing only the dist folder. Naming changes.
 

@@ -1,10 +1,10 @@
 {
   "name": "ramster-ui-core",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "An angular.io-based ui toolkit repo.",
   "scripts": {
     "build": "ng-packagr -p package.json",
-    "publish": "npm publish dist "
+    "publish": "npm publish dist"
   },
   "author": {
     "name": "Rumen Rumenov",

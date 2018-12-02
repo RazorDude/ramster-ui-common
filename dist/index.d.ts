@@ -1,9 +1,11 @@
-import { BaseLayoutComponent } from './components/base-layout.component';
-import { BasePageComponent } from './components/base-page.component';
-import { BaseRESTService } from './services/baseREST.service';
-import { FilesRESTService } from './services/filesREST.service';
-import { getNested, setNested } from './utils/toolbelt';
-import { GlobalEventsService } from './services/globalEvents/globalEvents.service';
-import { RequestService } from './services/request.service';
-import { SelectListInterface } from './interfaces/selectList.interface';
-export { BasePageComponent, BaseLayoutComponent, BaseRESTService, FilesRESTService, getNested, GlobalEventsService, RequestService, SelectListInterface, setNested };
+export declare class RamsterUICoreModule {
+}
+export * from './components/base-layout.component';
+export * from './components/base-page.component';
+export * from './services/baseREST.service';
+export * from './services/filesREST.service';
+export * from './utils/toolbelt';
+export * from './services/globalEvents/globalEvents.service';
+export * from './services/globalEvents/globalEvents.interfaces';
+export * from './services/request.service';
+export * from './interfaces/selectList.interface';
