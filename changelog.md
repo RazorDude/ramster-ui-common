@@ -1,3 +1,6 @@
+# 0.0.11
+- Removed the excess argument from GlobalEventsService.triggerInitialDataLoad.
+
 # 0.0.10
 - Better exports from the main file.
 

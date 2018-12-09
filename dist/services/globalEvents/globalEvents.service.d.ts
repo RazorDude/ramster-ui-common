@@ -36,7 +36,7 @@ export declare class GlobalEventsService {
     }>;
     toggleLoader$: import("rxjs/internal/Observable").Observable<boolean>;
     pageLoaded(data: any): void;
-    triggerInitialDataLoad(data: any): void;
+    triggerInitialDataLoad(): void;
     initialDataLoaded(data: any): void;
     setLayoutData(data: any): void;
     redirect(route: string, options?: GESRedirectOptionsInterface): void;

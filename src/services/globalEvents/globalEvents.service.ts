@@ -24,8 +24,8 @@ export class GlobalEventsService {
 		this.pageLoadedSource.next(data)
 	}
 
-	triggerInitialDataLoad(data): void {
-		this.triggerInitialDataLoadSource.next(data)
+	triggerInitialDataLoad(): void {
+		this.triggerInitialDataLoadSource.next()
 	}
 
 	initialDataLoaded(data): void {
