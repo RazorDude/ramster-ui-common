@@ -1,4 +1,3 @@
-import co from 'co'
 import {Injectable} from '@angular/core'
 
 import {BaseRESTService, GlobalEventsService, RequestService} from '../../../../src'

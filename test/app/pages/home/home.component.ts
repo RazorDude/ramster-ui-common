@@ -2,8 +2,6 @@
 
 import {ActivatedRoute, Router} from '@angular/router'
 import {Component} from '@angular/core'
-// import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
-import {Location} from '@angular/common'
 
 // import {AutocompleteFieldDataInterface, FileInputFieldDataInterface, InputFieldDataInterface, validators} from 'ramster-ui-forms'
 import {BasePageComponent, GlobalEventsService, GESRedirectOptionsInterface} from '../../../../src'

@@ -1,4 +1,3 @@
-import co from 'co'
 import {ChangeDetectorRef, Component, OnInit, ViewEncapsulation, HostListener} from '@angular/core'
 import {Router} from '@angular/router'
 
