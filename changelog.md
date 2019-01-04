@@ -1,3 +1,8 @@
+# 0.0.12
+- Added a test folder and a small test app in it.
+- Added the dist folder to gitignore.
+- Removed the test fodler from gitignore.
+
 # 0.0.11
 - Removed the excess argument from GlobalEventsService.triggerInitialDataLoad.
 
