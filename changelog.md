@@ -1,7 +1,10 @@
+# 0.0.13
+- BREAKING Moved the base-page.component's globalEventsService.pageLoaded trigger to a separate method - sendPageLoadedEvent. Add "sendPageLoadedEvent" to your page components' onInitMethodNames to achieve the same effect as before.
+
 # 0.0.12
 - Added a test folder and a small test app in it.
 - Added the dist folder to gitignore.
-- Removed the test fodler from gitignore.
+- Removed the test folder from gitignore.
 
 # 0.0.11
 - Removed the excess argument from GlobalEventsService.triggerInitialDataLoad.

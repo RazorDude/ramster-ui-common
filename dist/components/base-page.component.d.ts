@@ -18,6 +18,7 @@ export declare class BasePageComponent implements OnInit, OnDestroy {
     constructor(activatedRoute: ActivatedRoute, globalEventsService: GlobalEventsService, onInitMethodNames: string[], onInitialDataLoadedMethodNames: string[]);
     ngOnInit(): void;
     reset(): void;
+    sendPageLoadedEvent(): void;
     initialDataLoaded(data: any): void;
     destructor(): void;
     ngOnDestroy(): void;

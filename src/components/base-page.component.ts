@@ -33,6 +33,9 @@ export class BasePageComponent implements OnInit, OnDestroy {
 	reset(): void {
 		this.queryParams = this.activatedRoute.snapshot.queryParams
 		this.routeParams = this.activatedRoute.snapshot.params
+	}
+
+	sendPageLoadedEvent() {
 		this.globalEventsService.pageLoaded({queryParams: this.queryParams, routeParams: this.routeParams})
 	}
 
