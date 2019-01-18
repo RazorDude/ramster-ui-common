@@ -1,4 +1,4 @@
-export const getNested = (parent: any, field: string): void => {
+export const getNested = (parent: any, field: string): any => {
 	if ((typeof parent !== 'object') || (typeof field !== 'string')) {
 			return null
 		}

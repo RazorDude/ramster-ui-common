@@ -1,3 +1,6 @@
+# 0.0.14
+- toobelt.getNested return type fix.
+
 # 0.0.13
 - BREAKING Moved the base-page.component's globalEventsService.pageLoaded trigger to a separate method - sendPageLoadedEvent. Add "sendPageLoadedEvent" to your page components' onInitMethodNames to achieve the same effect as before.
 
