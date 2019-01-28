@@ -23,11 +23,10 @@ export class BaseRESTService {
 		const instance = this
 		return new Promise((resolve, reject) => {
 			co(function*() {
-				yield instance.requestService.run('post', `${instance.baseUrl}`, {
+				return yield instance.requestService.run('post', `${instance.baseUrl}`, {
 					headers: instance.headers,
 					body: params
 				})
-				return {success: true}
 			}).then((res) => resolve(res), (err) => {
 				instance.handleError(err)
 				reject({error: true})
