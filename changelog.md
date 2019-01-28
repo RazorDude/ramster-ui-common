@@ -1,3 +1,6 @@
+# 0.0.15
+- Fix for the BaseRestService.create method now returns the full response object, instead of {success: true}.
+
 # 0.0.14
 - toobelt.getNested return type fix.
 
