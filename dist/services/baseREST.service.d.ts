@@ -7,6 +7,7 @@ export declare class BaseRESTService {
     headers: HttpHeaders;
     baseUrl: string;
     constructor(globalEventsService: GlobalEventsService, requestService: RequestService);
+    emptyToNull(data: any): any;
     handleError(err: any): void;
     create(params: any): Promise<any>;
     read(params: any): Promise<any>;

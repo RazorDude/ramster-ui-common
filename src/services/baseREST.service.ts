@@ -15,6 +15,23 @@ export class BaseRESTService {
 		public requestService: RequestService
 	) {}
 
+	emptyToNull(data: any): any {
+		if (data === '') {
+			return null
+		}
+		if (data instanceof Array) {
+			return data.map((item, index) => this.emptyToNull(item))
+		}
+		if ((typeof data === 'object') && (data !== null)) {
+			const parsedData = {}
+			for (const key in data) {
+				parsedData[key] = this.emptyToNull(data[key])
+			}
+			return parsedData
+		}
+		return data
+	}
+
 	handleError(err): void {
 		this.globalEventsService.notify('error', err && err.error && err.error.error || 'An error has occurred.')
 	}
@@ -25,7 +42,7 @@ export class BaseRESTService {
 			co(function*() {
 				return yield instance.requestService.run('post', `${instance.baseUrl}`, {
 					headers: instance.headers,
-					body: params
+					body: instance.emptyToNull(params)
 				})
 			}).then((res) => resolve(res), (err) => {
 				instance.handleError(err)
@@ -40,7 +57,7 @@ export class BaseRESTService {
 			co(function*() {
 				return yield instance.requestService.run('get', `${instance.baseUrl}/item`, {
 					headers: instance.headers,
-					params
+					params: instance.emptyToNull(params)
 				})
 			}).then((res) => resolve(res), (err) => {
 				instance.handleError(err)
@@ -55,7 +72,7 @@ export class BaseRESTService {
 			co(function*() {
 				return yield instance.requestService.run('get', `${instance.baseUrl}`, {
 					headers: instance.headers,
-					params
+					params: instance.emptyToNull(params)
 				})
 			}).then((res) => resolve(res), (err) => {
 				instance.handleError(err)
@@ -70,7 +87,7 @@ export class BaseRESTService {
 			co(function*() {
 				return yield instance.requestService.run('get', `${instance.baseUrl}/selectList`, {
 					headers: instance.headers,
-					params
+					params: instance.emptyToNull(params)
 				})
 			}).then((res) => resolve(res), (err) => {
 				instance.handleError(err)
@@ -85,7 +102,7 @@ export class BaseRESTService {
 			co(function*() {
 				return yield instance.requestService.run('patch', `${instance.baseUrl}/item/${params.id}`, {
 					headers: instance.headers,
-					body: params
+					body: instance.emptyToNull(params)
 				})
 			}).then((res) => resolve(res), (err) => {
 				instance.handleError(err)
@@ -100,7 +117,7 @@ export class BaseRESTService {
 			co(function*() {
 				return yield instance.requestService.run('put', `${instance.baseUrl}`, {
 					headers: instance.headers,
-					body: params
+					body: instance.emptyToNull(params)
 				})
 			}).then((res) => resolve(res), (err) => {
 				instance.handleError(err)
@@ -115,7 +132,7 @@ export class BaseRESTService {
 			co(function*() {
 				return yield instance.requestService.run('delete', `${instance.baseUrl}/${params.id}`, {
 					headers: instance.headers,
-					body: params
+					body: instance.emptyToNull(params)
 				})
 			}).then((res) => resolve(res), (err) => {
 				instance.handleError(err)

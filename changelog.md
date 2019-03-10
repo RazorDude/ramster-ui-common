@@ -1,3 +1,6 @@
+# 0.0.16
+- All BaseRESTService methods now parse empty string params to null.
+
 # 0.0.15
 - Fix for the BaseRestService.create method now returns the full response object, instead of {success: true}.
 
