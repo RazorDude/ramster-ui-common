@@ -1,3 +1,6 @@
+# 0.0.17
+- Codebase fix.
+
 # 0.0.16
 - All BaseRESTService methods now parse empty string params to null.
 
