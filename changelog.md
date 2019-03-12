@@ -1,3 +1,6 @@
+# 0.0.18
+- Fix for the baseRESTService.emptyToNull method - it now correctly returns dates as-is.
+
 # 0.0.17
 - Codebase fix.
 

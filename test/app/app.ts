@@ -40,9 +40,9 @@ const routes: Routes = [
 		HomePageComponent
 	],
 	providers: [
-		TestModelRESTService,
 		GlobalEventsService,
-		RequestService
+		RequestService,
+		TestModelRESTService
 	],
 	bootstrap: [LayoutComponent]
 })

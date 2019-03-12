@@ -19,6 +19,9 @@ export class BaseRESTService {
 		if (data === '') {
 			return null
 		}
+		if (data instanceof Date) {
+			return data
+		}
 		if (data instanceof Array) {
 			return data.map((item, index) => this.emptyToNull(item))
 		}
