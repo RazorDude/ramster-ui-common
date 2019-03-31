@@ -6,6 +6,39 @@ import {HttpClient, HttpParams, HttpRequest, HttpResponse} from '@angular/common
 export class RequestService {
 	constructor(public client: HttpClient) {}
 
+	flattenObjectForQuery(object: {[x: string]: any} | any[], parentKey?: string): {key: string, value: any}[] {
+		let returnObject = []
+		if (object instanceof Array) {
+			if (!parentKey) {
+				throw {error: 'The top-most item cannot be an array.'}
+			}
+			object.forEach((item) => {
+				if (item === null) {
+					return
+				}
+				if ((item instanceof Date) || !(item instanceof Array)  || (typeof item !== 'object')) {
+					returnObject.push({key: `${parentKey}[]`, value: item})
+					return
+				}
+				returnObject = returnObject.concat(this.flattenObjectForQuery(item, `${parentKey}[]`))
+				return
+			})
+			return returnObject
+		}
+		for (const key in object) {
+			const value = object[key]
+			if (value === null) {
+				continue
+			}
+			if ((value instanceof Date) || (typeof value !== 'object')) {
+				returnObject.push({key: parentKey ? `${parentKey}[${key}]`: key, value})
+				continue
+			}
+			returnObject = returnObject.concat(this.flattenObjectForQuery(value, parentKey ? `${parentKey}[${key}]` : key))
+		}
+		return returnObject
+	}
+
 	run(method: string, url: string, options?: {[x: string]: any}) {
 		return new Promise((resolve, reject) => {
 			try {
@@ -21,30 +54,11 @@ export class RequestService {
 					if (!requestOptions || (typeof requestOptions !== 'object')) {
 						requestOptions = {}
 					}
-					const optionsParams = requestOptions.params || {}
+					const optionsParams = this.flattenObjectForQuery(requestOptions.params || {})
 					let httpParams = new HttpParams()
-					for (const key in optionsParams) {
-						const optParam = optionsParams[key]
-						if ((typeof optParam === 'object') && (optParam !== null)) {
-							if (optParam instanceof Array) {
-								optParam.forEach((item) => {
-									if ((typeof item === 'object') && (item !== null)) {
-										for (const innerKey in item) {
-											httpParams = httpParams.set(`${key}[${innerKey}]`, item[innerKey])
-										}
-										return
-									}
-									httpParams = httpParams.set(`${key}[]`, item)
-								})
-								continue
-							}
-							for (const innerKey in optParam) {
-								httpParams = httpParams.set(`${key}[${innerKey}]`, optParam[innerKey])
-							}
-							continue
-						}
-						httpParams = httpParams.set(key, optParam)
-					}
+					optionsParams.forEach((item) => {
+						httpParams = httpParams.set(item.key, item.value)
+					})
 					httpParams = httpParams.set('_', (new Date()).getTime().toString())
 					requestOptions.params = httpParams
 				} else {

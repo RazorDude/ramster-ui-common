@@ -1,3 +1,6 @@
+# 0.0.19
+- Added flattenObjectForQuery to requestService. It's now used for get calls.
+
 # 0.0.18
 - Fix for the baseRESTService.emptyToNull method - it now correctly returns dates as-is.
 
