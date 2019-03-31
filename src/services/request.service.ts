@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core'
-import {HttpClient, HttpParams, HttpRequest, HttpResponse} from '@angular/common/http'
+import {HttpClient, HttpRequest, HttpResponse} from '@angular/common/http'
 
 
 @Injectable()
@@ -42,7 +42,8 @@ export class RequestService {
 	run(method: string, url: string, options?: {[x: string]: any}) {
 		return new Promise((resolve, reject) => {
 			try {
-				let runOptions = {} as any,
+				let actualUrl = url,
+					runOptions = {} as any,
 					requestOptions = {} as any,
 					body = null
 				if (options && (typeof options === 'object')) {
@@ -55,12 +56,12 @@ export class RequestService {
 						requestOptions = {}
 					}
 					const optionsParams = this.flattenObjectForQuery(requestOptions.params || {})
-					let httpParams = new HttpParams()
-					optionsParams.forEach((item) => {
-						httpParams = httpParams.set(item.key, item.value)
-					})
-					httpParams = httpParams.set('_', (new Date()).getTime().toString())
-					requestOptions.params = httpParams
+					actualUrl += `?_=${(new Date()).getTime().toString()}`
+					if (optionsParams.length) {
+						optionsParams.forEach((item, index) => {
+							actualUrl += `&${item.key}=${item.value}`
+						})
+					}
 				} else {
 					if (!requestOptions || (typeof requestOptions !== 'object')) {
 						requestOptions = {}
@@ -69,8 +70,8 @@ export class RequestService {
 					body._ = (new Date()).getTime()
 					delete requestOptions.body
 				}
-				if (!requestOptions.responseType) {}
-				this.client.request(new HttpRequest(method, url, body, requestOptions)).toPromise().then(
+				// if (!requestOptions.responseType) {}
+				this.client.request(new HttpRequest(method, actualUrl, body, requestOptions)).toPromise().then(
 					(response: HttpResponse<any>) => runOptions.resolveWithFullResponse ? resolve(response) : resolve(response.body),
 					(error: any) => reject(error)
 				)

@@ -1,3 +1,6 @@
+# 0.0.20
+- Another fix to requestService.flattenObjectForQuery.
+
 # 0.0.19
 - Added flattenObjectForQuery to requestService. It's now used for get calls.
 
