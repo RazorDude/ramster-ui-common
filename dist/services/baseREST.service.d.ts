@@ -8,6 +8,11 @@ export declare class BaseRESTService {
     baseUrl: string;
     constructor(globalEventsService: GlobalEventsService, requestService: RequestService);
     emptyToNull(data: any): any;
+    stringifyGetParams(data: {
+        [key: string]: any;
+    }): {
+        [key: string]: any;
+    };
     handleError(err: any): void;
     create(params: any): Promise<any>;
     read(params: any): Promise<any>;

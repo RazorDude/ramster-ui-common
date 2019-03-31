@@ -35,6 +35,17 @@ export class BaseRESTService {
 		return data
 	}
 
+	stringifyGetParams(data: {[key: string]: any}): {[key: string]: any} {
+		let stringifiedObject = {}
+		for (const key in data) {
+			const value = data[key]
+			if ((value instanceof Array) || ((typeof value === 'object') && (value !== null) && !(value instanceof Date))) {
+				stringifiedObject[`_json_${key}`] = JSON.stringify(value)
+			}
+		}
+		return stringifiedObject
+	}
+
 	handleError(err): void {
 		this.globalEventsService.notify('error', err && err.error && err.error.error || 'An error has occurred.')
 	}
@@ -60,7 +71,7 @@ export class BaseRESTService {
 			co(function*() {
 				return yield instance.requestService.run('get', `${instance.baseUrl}/item`, {
 					headers: instance.headers,
-					params: instance.emptyToNull(params)
+					params: instance.stringifyGetParams(instance.emptyToNull(params))
 				})
 			}).then((res) => resolve(res), (err) => {
 				instance.handleError(err)
@@ -75,7 +86,7 @@ export class BaseRESTService {
 			co(function*() {
 				return yield instance.requestService.run('get', `${instance.baseUrl}`, {
 					headers: instance.headers,
-					params: instance.emptyToNull(params)
+					params: instance.stringifyGetParams(instance.emptyToNull(params))
 				})
 			}).then((res) => resolve(res), (err) => {
 				instance.handleError(err)
@@ -90,7 +101,7 @@ export class BaseRESTService {
 			co(function*() {
 				return yield instance.requestService.run('get', `${instance.baseUrl}/selectList`, {
 					headers: instance.headers,
-					params: instance.emptyToNull(params)
+					params: instance.stringifyGetParams(instance.emptyToNull(params))
 				})
 			}).then((res) => resolve(res), (err) => {
 				instance.handleError(err)
@@ -105,7 +116,7 @@ export class BaseRESTService {
 			co(function*() {
 				return yield instance.requestService.run('patch', `${instance.baseUrl}/item/${params.id}`, {
 					headers: instance.headers,
-					body: instance.emptyToNull(params)
+					body: instance.stringifyGetParams(instance.emptyToNull(params))
 				})
 			}).then((res) => resolve(res), (err) => {
 				instance.handleError(err)

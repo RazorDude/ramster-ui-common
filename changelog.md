@@ -1,3 +1,6 @@
+# 0.0.21
+- Added a method for converting complex data to json in the query - baseRESTService.stringifyGetParams. It's now used in read, readList and readSelectList.
+
 # 0.0.20
 - Another fix to requestService.flattenObjectForQuery.
 
