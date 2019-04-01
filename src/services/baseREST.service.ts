@@ -41,7 +41,9 @@ export class BaseRESTService {
 			const value = data[key]
 			if ((value instanceof Array) || ((typeof value === 'object') && (value !== null) && !(value instanceof Date))) {
 				stringifiedObject[`_json_${key}`] = JSON.stringify(value)
+				continue
 			}
+			stringifiedObject[key] = value
 		}
 		return stringifiedObject
 	}

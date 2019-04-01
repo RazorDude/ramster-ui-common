@@ -1,3 +1,6 @@
+# 0.0.22
+- Ooops! Forgot to include the non-object items in baseRESTService.stringifyGetParams :)
+
 # 0.0.21
 - Added a method for converting complex data to json in the query - baseRESTService.stringifyGetParams. It's now used in read, readList and readSelectList.
 
