@@ -118,7 +118,7 @@ export class BaseRESTService {
 			co(function*() {
 				return yield instance.requestService.run('patch', `${instance.baseUrl}/item/${params.id}`, {
 					headers: instance.headers,
-					body: instance.stringifyGetParams(instance.emptyToNull(params))
+					body: instance.emptyToNull(params)
 				})
 			}).then((res) => resolve(res), (err) => {
 				instance.handleError(err)

@@ -1,3 +1,6 @@
+# 0.0.23
+- Removed the usage of baseRESTService.stringifyGetParams from baseRESTService.update.
+
 # 0.0.22
 - Ooops! Forgot to include the non-object items in baseRESTService.stringifyGetParams :)
 
