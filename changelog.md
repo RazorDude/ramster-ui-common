@@ -1,3 +1,6 @@
+# 0.0.24
+- Huge update to utils.getNested - now supports retreiving arrays and parent.$nested.field$ values (values surrounded by $$ won't be split by ".").
+
 # 0.0.23
 - Removed the usage of baseRESTService.stringifyGetParams from baseRESTService.update.
 
