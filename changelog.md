@@ -1,3 +1,6 @@
+# 0.0.25
+- Added a new service - ModelRESTServiceProvider. It should be injected into the root app module, the services themselves should be provided in the layout component and it can then be used to dynamically provide REST services to components.
+
 # 0.0.24
 - Huge update to utils.getNested - now supports retreiving arrays and parent.$nested.field$ values (values surrounded by $$ won't be split by ".").
 
