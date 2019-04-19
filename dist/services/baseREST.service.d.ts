@@ -4,8 +4,9 @@ import { RequestService } from './request.service';
 export declare class BaseRESTService {
     globalEventsService: GlobalEventsService;
     requestService: RequestService;
-    headers: HttpHeaders;
     baseUrl: string;
+    headers: HttpHeaders;
+    redirectOnForbiddenUrl?: string;
     constructor(globalEventsService: GlobalEventsService, requestService: RequestService);
     emptyToNull(data: any): any;
     stringifyGetParams(data: {
