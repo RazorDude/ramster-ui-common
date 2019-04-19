@@ -28,12 +28,12 @@ export class HomePageComponent extends BasePageComponent {
 		super.reset()
 
 		this.globalEventsService.setLayoutData({hasHeader: true})
-
-		// let obj = {test1: '', test2: {test3: null, test4: 'abc', test5: 0, test6: '', test7: true, test8: new Date()}}
-		// console.log(obj, this.testModelRESTService.emptyToNull(obj))
-		this.testModelRESTService.readList({filters: {id: [1, 2, 3, 4]}})
 	}
 
 	onInitialDataLoaded(): void {
+	}
+
+	testReadList(): void {
+		this.testModelRESTService.readList({filters: {id: [1, 2, 3, 4]}})
 	}
 }

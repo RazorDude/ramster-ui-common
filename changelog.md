@@ -1,3 +1,6 @@
+# 0.0.27
+- BaseRESTService's handleError now supports redirecting to a specific url for 401 errors - must be specified in the redirectOnForbiddenUrl property.
+
 # 0.0.26
 - Exports fix.
 

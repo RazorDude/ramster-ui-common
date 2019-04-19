@@ -7,8 +7,9 @@ import {RequestService} from './request.service'
 
 @Injectable()
 export class BaseRESTService {
-	headers = new HttpHeaders({'Content-Type': 'application/json'})
 	baseUrl = '/'
+	headers = new HttpHeaders({'Content-Type': 'application/json'})
+	redirectOnForbiddenUrl?: string = null
 
 	constructor(
 		public globalEventsService: GlobalEventsService,
@@ -48,8 +49,16 @@ export class BaseRESTService {
 		return stringifiedObject
 	}
 
-	handleError(err): void {
-		this.globalEventsService.notify('error', err && err.error && err.error.error || 'An error has occurred.')
+	handleError(err: any): void {
+		if (!err) {
+			this.globalEventsService.notify('error', 'An error has occurred.')
+			return
+		}
+		if (this.redirectOnForbiddenUrl && (err.status === 401)) {
+			this.globalEventsService.redirect(this.redirectOnForbiddenUrl)
+			return
+		}
+		this.globalEventsService.notify('error', err.error && err.error.error || 'An error has occurred.')
 	}
 
 	create(params): Promise<any> {
