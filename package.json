@@ -1,6 +1,6 @@
 {
   "name": "ramster-ui-core",
-  "version": "0.0.31",
+  "version": "0.0.32",
   "description": "An angular.io-based ui toolkit repo.",
   "scripts": {
     "testApp": "(node test/server.js & node test/webpack.devserver.js) || echo 'Could not start the test app'",

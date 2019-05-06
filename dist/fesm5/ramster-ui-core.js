@@ -735,7 +735,7 @@ var BaseRESTService = /** @class */ (function () {
         /** @type {?} */
         var errorHandler = onError ? onError : this.handleError.bind(this);
         /** @type {?} */
-        var url = window.location.origin + "/" + this.baseUrl + "/streamList";
+        var url = "" + window.location.origin + this.baseUrl + "/streamList";
         /** @type {?} */
         var stringifiedParams = this.stringifyGetParams(this.emptyToNull(params));
         /** @type {?} */

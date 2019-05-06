@@ -1,3 +1,6 @@
+# 0.0.32
+- BaseRESTService.readStreamList url fix.
+
 # 0.0.31
 - BaseRESTService.readStreamList url and url params fix.
 
