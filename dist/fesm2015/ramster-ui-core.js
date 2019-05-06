@@ -604,7 +604,23 @@ class BaseRESTService {
         /** @type {?} */
         const errorHandler = onError ? onError : this.handleError.bind(this);
         /** @type {?} */
-        let eventSource = new EventSource(`/${this.baseUrl}/streamList` + this.stringifyGetParams(this.emptyToNull(params)));
+        let url = `/${this.baseUrl}/streamList`;
+        /** @type {?} */
+        let stringifiedParams = this.stringifyGetParams(this.emptyToNull(params));
+        /** @type {?} */
+        let firstParam = true;
+        for (const key in stringifiedParams) {
+            if (firstParam) {
+                firstParam = false;
+                url += '?';
+            }
+            else {
+                url += '&';
+            }
+            url += stringifiedParams[key];
+        }
+        /** @type {?} */
+        let eventSource = new EventSource(url);
         eventSource.onmessage = (/**
          * @param {?} event
          * @return {?}

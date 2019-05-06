@@ -1,3 +1,6 @@
+# 0.0.29
+- BaseRESTService.readStreamList url params fix.
+
 # 0.0.28
 - Added readStreamList to the BaseRESTService.
 - BaseRESTService.handleError can now go silently (without notifying for an error).

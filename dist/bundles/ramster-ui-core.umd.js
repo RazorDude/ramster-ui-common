@@ -818,7 +818,23 @@
                 /** @type {?} */
                 var errorHandler = onError ? onError : this.handleError.bind(this);
                 /** @type {?} */
-                var eventSource = new EventSource("/" + this.baseUrl + "/streamList" + this.stringifyGetParams(this.emptyToNull(params)));
+                var url = "/" + this.baseUrl + "/streamList";
+                /** @type {?} */
+                var stringifiedParams = this.stringifyGetParams(this.emptyToNull(params));
+                /** @type {?} */
+                var firstParam = true;
+                for (var key in stringifiedParams) {
+                    if (firstParam) {
+                        firstParam = false;
+                        url += '?';
+                    }
+                    else {
+                        url += '&';
+                    }
+                    url += stringifiedParams[key];
+                }
+                /** @type {?} */
+                var eventSource = new EventSource(url);
                 eventSource.onmessage = ( /**
                  * @param {?} event
                  * @return {?}

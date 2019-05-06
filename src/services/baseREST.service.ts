@@ -118,7 +118,19 @@ export class BaseRESTService {
 	): EventSource {
 		const {onError, reconnectAttemptInterval, reconnectAttemptsLeft} = options || {} as any,
 			errorHandler = onError ? onError : this.handleError.bind(this)
-		let eventSource = new EventSource(`/${this.baseUrl}/streamList` + this.stringifyGetParams(this.emptyToNull(params)))
+		let url = `/${this.baseUrl}/streamList`,
+			stringifiedParams = this.stringifyGetParams(this.emptyToNull(params)),
+			firstParam = true
+		for (const key in stringifiedParams) {
+			if (firstParam) {
+				firstParam = false
+				url += '?'
+			} else {
+				url += '&'
+			}
+			url += stringifiedParams[key]
+		}
+		let eventSource = new EventSource(url)
 		eventSource.onmessage = (event) => onMessage(event)
 		eventSource.onerror = (err) => {
 			errorHandler(err)
