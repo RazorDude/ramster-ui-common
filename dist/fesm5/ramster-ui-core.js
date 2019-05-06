@@ -748,7 +748,7 @@ var BaseRESTService = /** @class */ (function () {
             else {
                 url += '&';
             }
-            url += stringifiedParams[key];
+            url += key + "=" + stringifiedParams[key];
         }
         /** @type {?} */
         var eventSource = new EventSource(url);

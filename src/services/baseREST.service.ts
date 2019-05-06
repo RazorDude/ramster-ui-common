@@ -128,7 +128,7 @@ export class BaseRESTService {
 			} else {
 				url += '&'
 			}
-			url += stringifiedParams[key]
+			url += `${key}=${stringifiedParams[key]}`
 		}
 		let eventSource = new EventSource(url)
 		eventSource.onmessage = (event) => onMessage(event)

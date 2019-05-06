@@ -617,7 +617,7 @@ class BaseRESTService {
             else {
                 url += '&';
             }
-            url += stringifiedParams[key];
+            url += `${key}=${stringifiedParams[key]}`;
         }
         /** @type {?} */
         let eventSource = new EventSource(url);
