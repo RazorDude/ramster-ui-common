@@ -49,16 +49,21 @@ export class BaseRESTService {
 		return stringifiedObject
 	}
 
-	handleError(err: any): void {
+	handleError(err: any, options?: {notifyOnError?: boolean}): void {
+		const {notifyOnError} = options || {} as any
 		if (!err) {
-			this.globalEventsService.notify('error', 'An error has occurred.')
+			if (notifyOnError !== false) {
+				this.globalEventsService.notify('error', 'An error has occurred.')
+			}
 			return
 		}
 		if (this.redirectOnForbiddenUrl && (err.status === 401)) {
 			this.globalEventsService.redirect(this.redirectOnForbiddenUrl)
 			return
 		}
-		this.globalEventsService.notify('error', err.error && err.error.error || 'An error has occurred.')
+		if (notifyOnError !== false) {
+			this.globalEventsService.notify('error', err.error && err.error.error || 'An error has occurred.')
+		}
 	}
 
 	create(params): Promise<any> {
@@ -104,6 +109,33 @@ export class BaseRESTService {
 				reject({error: true})
 			})
 		})
+	}
+
+	readStreamList(
+		params: {[key: string]: any},
+		onMessage: Function,
+		options?: {onError?: Function, reconnectAttemptInterval?: number, reconnectAttemptsLeft?: number}
+	): EventSource {
+		const {onError, reconnectAttemptInterval, reconnectAttemptsLeft} = options || {} as any,
+			errorHandler = onError ? onError : this.handleError.bind(this)
+		let eventSource = new EventSource(`/${this.baseUrl}/streamList` + this.stringifyGetParams(this.emptyToNull(params)))
+		eventSource.onmessage = (event) => onMessage(event)
+		eventSource.onerror = (err) => {
+			errorHandler(err)
+			if ((typeof reconnectAttemptsLeft === 'undefined') || reconnectAttemptsLeft > 0) {
+				eventSource.close()
+				setTimeout(() => {
+					this.readStreamList(
+						params,
+						onMessage, {
+							...options,
+							reconnectAttemptsLeft: typeof reconnectAttemptsLeft === 'number' ? reconnectAttemptsLeft - 1 : undefined
+						}
+					)
+				}, reconnectAttemptInterval || 5000)
+			}
+		}
+		return eventSource
 	}
 
 	readSelectList(params): Promise<any> {

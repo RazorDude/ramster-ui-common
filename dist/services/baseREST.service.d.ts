@@ -14,10 +14,19 @@ export declare class BaseRESTService {
     }): {
         [key: string]: any;
     };
-    handleError(err: any): void;
+    handleError(err: any, options?: {
+        notifyOnError?: boolean;
+    }): void;
     create(params: any): Promise<any>;
     read(params: any): Promise<any>;
     readList(params: any): Promise<any>;
+    readStreamList(params: {
+        [key: string]: any;
+    }, onMessage: Function, options?: {
+        onError?: Function;
+        reconnectAttemptInterval?: number;
+        reconnectAttemptsLeft?: number;
+    }): EventSource;
     readSelectList(params: any): Promise<any>;
     update(params: any): Promise<any>;
     bulkUpsert(params: any): Promise<any>;

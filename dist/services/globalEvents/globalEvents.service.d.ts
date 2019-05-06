@@ -18,23 +18,23 @@ export declare class GlobalEventsService {
         message: string;
     }>;
     toggleLoaderSource: Subject<boolean>;
-    pageLoaded$: import("rxjs/internal/Observable").Observable<void | {
+    pageLoaded$: import("rxjs").Observable<void | {
         [x: string]: any;
     }>;
-    triggerInitialDataLoad$: import("rxjs/internal/Observable").Observable<void>;
-    initialDataLoaded$: import("rxjs/internal/Observable").Observable<any>;
-    setLayoutData$: import("rxjs/internal/Observable").Observable<{
+    triggerInitialDataLoad$: import("rxjs").Observable<void>;
+    initialDataLoaded$: import("rxjs").Observable<any>;
+    setLayoutData$: import("rxjs").Observable<{
         [x: string]: any;
     }>;
-    redirect$: import("rxjs/internal/Observable").Observable<{
+    redirect$: import("rxjs").Observable<{
         route: string;
         options: GESRedirectOptionsInterface;
     }>;
-    notify$: import("rxjs/internal/Observable").Observable<{
+    notify$: import("rxjs").Observable<{
         type: string;
         message: string;
     }>;
-    toggleLoader$: import("rxjs/internal/Observable").Observable<boolean>;
+    toggleLoader$: import("rxjs").Observable<boolean>;
     pageLoaded(data: any): void;
     triggerInitialDataLoad(): void;
     initialDataLoaded(data: any): void;

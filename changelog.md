@@ -1,3 +1,7 @@
+# 0.0.28
+- Added readStreamList to the BaseRESTService.
+- BaseRESTService.handleError can now go silently (without notifying for an error).
+
 # 0.0.27
 - BaseRESTService's handleError now supports redirecting to a specific url for 401 errors - must be specified in the redirectOnForbiddenUrl property.
 
