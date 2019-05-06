@@ -604,7 +604,7 @@ class BaseRESTService {
         /** @type {?} */
         const errorHandler = onError ? onError : this.handleError.bind(this);
         /** @type {?} */
-        let url = `/${this.baseUrl}/streamList`;
+        let url = `${window.location.origin}/${this.baseUrl}/streamList`;
         /** @type {?} */
         let stringifiedParams = this.stringifyGetParams(this.emptyToNull(params));
         /** @type {?} */

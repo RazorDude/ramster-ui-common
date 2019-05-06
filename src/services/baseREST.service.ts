@@ -118,7 +118,7 @@ export class BaseRESTService {
 	): EventSource {
 		const {onError, reconnectAttemptInterval, reconnectAttemptsLeft} = options || {} as any,
 			errorHandler = onError ? onError : this.handleError.bind(this)
-		let url = `/${this.baseUrl}/streamList`,
+		let url = `${window.location.origin}/${this.baseUrl}/streamList`,
 			stringifiedParams = this.stringifyGetParams(this.emptyToNull(params)),
 			firstParam = true
 		for (const key in stringifiedParams) {
