@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 import { __rest } from 'tslib';
+import { Subject } from 'rxjs';
 import co from 'co';
 import { HttpClient, HttpRequest, HttpHeaders } from '@angular/common/http';
 import { Injectable, Injector, NgModule } from '@angular/core';
@@ -599,10 +599,14 @@ class BaseRESTService {
      * @param {?=} options
      * @return {?}
      */
-    readStreamList(params, onMessage, options) {
-        const { onError, reconnectAttemptInterval, reconnectAttemptsLeft } = options || (/** @type {?} */ ({}));
+    streamReadList(params, onMessage, options) {
+        /** @type {?} */
+        const actualOptions = options || {};
+        const { onError, reconnectAttemptInterval } = actualOptions;
         /** @type {?} */
         const errorHandler = onError ? onError : this.handleError.bind(this);
+        /** @type {?} */
+        let reconnectAttemptsLeft = actualOptions.reconnectAttemptsLeft;
         /** @type {?} */
         let url = `${window.location.origin}${this.baseUrl}/streamList`;
         /** @type {?} */
@@ -621,6 +625,10 @@ class BaseRESTService {
         }
         /** @type {?} */
         let eventSource = new EventSource(url);
+        /** @type {?} */
+        let closeSubject = new Subject();
+        /** @type {?} */
+        let reconnectAllowed = { value: true };
         eventSource.onmessage = (/**
          * @param {?} event
          * @return {?}
@@ -630,19 +638,41 @@ class BaseRESTService {
          * @param {?} err
          * @return {?}
          */
-        (err) => {
-            errorHandler(err);
-            if ((typeof reconnectAttemptsLeft === 'undefined') || reconnectAttemptsLeft > 0) {
-                eventSource.close();
-                setTimeout((/**
+        (err) => errorHandler(err));
+        /** @type {?} */
+        let interval = setInterval((/**
+         * @return {?}
+         */
+        () => {
+            if ((eventSource.CLOSED === 2) &&
+                reconnectAllowed.value &&
+                ((typeof reconnectAttemptsLeft === 'undefined') || reconnectAttemptsLeft > 0)) {
+                eventSource = new EventSource(url);
+                eventSource.onmessage = (/**
+                 * @param {?} event
                  * @return {?}
                  */
-                () => {
-                    this.readStreamList(params, onMessage, Object.assign({}, options, { reconnectAttemptsLeft: typeof reconnectAttemptsLeft === 'number' ? reconnectAttemptsLeft - 1 : undefined }));
-                }), reconnectAttemptInterval || 5000);
+                (event) => onMessage(event));
+                eventSource.onerror = (/**
+                 * @param {?} err
+                 * @return {?}
+                 */
+                (err) => errorHandler(err));
+                if (typeof reconnectAttemptsLeft !== 'undefined') {
+                    reconnectAttemptsLeft--;
+                }
+                return;
             }
-        });
-        return eventSource;
+            clearInterval(interval);
+        }), reconnectAttemptInterval || 5000);
+        closeSubject.subscribe((/**
+         * @return {?}
+         */
+        () => {
+            reconnectAllowed.value = false;
+            eventSource.close();
+        }));
+        return closeSubject;
     }
     /**
      * @param {?} params

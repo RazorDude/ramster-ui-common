@@ -248,18 +248,6 @@
     See the Apache Version 2.0 License for specific language governing permissions
     and limitations under the License.
     ***************************************************************************** */
-    var __assign = function () {
-        __assign = Object.assign || function __assign(t) {
-            for (var s, i = 1, n = arguments.length; i < n; i++) {
-                s = arguments[i];
-                for (var p in s)
-                    if (Object.prototype.hasOwnProperty.call(s, p))
-                        t[p] = s[p];
-            }
-            return t;
-        };
-        return __assign.apply(this, arguments);
-    };
     function __rest(s, e) {
         var t = {};
         for (var p in s)
@@ -806,17 +794,20 @@
          * @param {?=} options
          * @return {?}
          */
-        BaseRESTService.prototype.readStreamList = /**
+        BaseRESTService.prototype.streamReadList = /**
          * @param {?} params
          * @param {?} onMessage
          * @param {?=} options
          * @return {?}
          */
             function (params, onMessage, options) {
-                var _this = this;
-                var _a = options || ( /** @type {?} */({})), onError = _a.onError, reconnectAttemptInterval = _a.reconnectAttemptInterval, reconnectAttemptsLeft = _a.reconnectAttemptsLeft;
+                /** @type {?} */
+                var actualOptions = options || {};
+                var onError = actualOptions.onError, reconnectAttemptInterval = actualOptions.reconnectAttemptInterval;
                 /** @type {?} */
                 var errorHandler = onError ? onError : this.handleError.bind(this);
+                /** @type {?} */
+                var reconnectAttemptsLeft = actualOptions.reconnectAttemptsLeft;
                 /** @type {?} */
                 var url = "" + window.location.origin + this.baseUrl + "/streamList";
                 /** @type {?} */
@@ -835,6 +826,10 @@
                 }
                 /** @type {?} */
                 var eventSource = new EventSource(url);
+                /** @type {?} */
+                var closeSubject = new rxjs.Subject();
+                /** @type {?} */
+                var reconnectAllowed = { value: true };
                 eventSource.onmessage = ( /**
                  * @param {?} event
                  * @return {?}
@@ -842,18 +837,37 @@
                 eventSource.onerror = ( /**
                  * @param {?} err
                  * @return {?}
-                 */function (err) {
-                    errorHandler(err);
-                    if ((typeof reconnectAttemptsLeft === 'undefined') || reconnectAttemptsLeft > 0) {
-                        eventSource.close();
-                        setTimeout(( /**
+                 */function (err) { return errorHandler(err); });
+                /** @type {?} */
+                var interval = setInterval(( /**
+                 * @return {?}
+                 */function () {
+                    if ((eventSource.CLOSED === 2) &&
+                        reconnectAllowed.value &&
+                        ((typeof reconnectAttemptsLeft === 'undefined') || reconnectAttemptsLeft > 0)) {
+                        eventSource = new EventSource(url);
+                        eventSource.onmessage = ( /**
+                         * @param {?} event
                          * @return {?}
-                         */function () {
-                            _this.readStreamList(params, onMessage, __assign({}, options, { reconnectAttemptsLeft: typeof reconnectAttemptsLeft === 'number' ? reconnectAttemptsLeft - 1 : undefined }));
-                        }), reconnectAttemptInterval || 5000);
+                         */function (event) { return onMessage(event); });
+                        eventSource.onerror = ( /**
+                         * @param {?} err
+                         * @return {?}
+                         */function (err) { return errorHandler(err); });
+                        if (typeof reconnectAttemptsLeft !== 'undefined') {
+                            reconnectAttemptsLeft--;
+                        }
+                        return;
                     }
-                });
-                return eventSource;
+                    clearInterval(interval);
+                }), reconnectAttemptInterval || 5000);
+                closeSubject.subscribe(( /**
+                 * @return {?}
+                 */function () {
+                    reconnectAllowed.value = false;
+                    eventSource.close();
+                }));
+                return closeSubject;
             };
         /**
          * @param {?} params

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { __generator, __rest, __assign } from 'tslib';
+import { __generator, __rest } from 'tslib';
 import co from 'co';
 import { HttpClient, HttpRequest, HttpHeaders } from '@angular/common/http';
 import { Injectable, Injector, NgModule } from '@angular/core';
@@ -723,17 +723,20 @@ var BaseRESTService = /** @class */ (function () {
      * @param {?=} options
      * @return {?}
      */
-    BaseRESTService.prototype.readStreamList = /**
+    BaseRESTService.prototype.streamReadList = /**
      * @param {?} params
      * @param {?} onMessage
      * @param {?=} options
      * @return {?}
      */
     function (params, onMessage, options) {
-        var _this = this;
-        var _a = options || (/** @type {?} */ ({})), onError = _a.onError, reconnectAttemptInterval = _a.reconnectAttemptInterval, reconnectAttemptsLeft = _a.reconnectAttemptsLeft;
+        /** @type {?} */
+        var actualOptions = options || {};
+        var onError = actualOptions.onError, reconnectAttemptInterval = actualOptions.reconnectAttemptInterval;
         /** @type {?} */
         var errorHandler = onError ? onError : this.handleError.bind(this);
+        /** @type {?} */
+        var reconnectAttemptsLeft = actualOptions.reconnectAttemptsLeft;
         /** @type {?} */
         var url = "" + window.location.origin + this.baseUrl + "/streamList";
         /** @type {?} */
@@ -752,6 +755,10 @@ var BaseRESTService = /** @class */ (function () {
         }
         /** @type {?} */
         var eventSource = new EventSource(url);
+        /** @type {?} */
+        var closeSubject = new Subject();
+        /** @type {?} */
+        var reconnectAllowed = { value: true };
         eventSource.onmessage = (/**
          * @param {?} event
          * @return {?}
@@ -761,19 +768,41 @@ var BaseRESTService = /** @class */ (function () {
          * @param {?} err
          * @return {?}
          */
-        function (err) {
-            errorHandler(err);
-            if ((typeof reconnectAttemptsLeft === 'undefined') || reconnectAttemptsLeft > 0) {
-                eventSource.close();
-                setTimeout((/**
+        function (err) { return errorHandler(err); });
+        /** @type {?} */
+        var interval = setInterval((/**
+         * @return {?}
+         */
+        function () {
+            if ((eventSource.CLOSED === 2) &&
+                reconnectAllowed.value &&
+                ((typeof reconnectAttemptsLeft === 'undefined') || reconnectAttemptsLeft > 0)) {
+                eventSource = new EventSource(url);
+                eventSource.onmessage = (/**
+                 * @param {?} event
                  * @return {?}
                  */
-                function () {
-                    _this.readStreamList(params, onMessage, __assign({}, options, { reconnectAttemptsLeft: typeof reconnectAttemptsLeft === 'number' ? reconnectAttemptsLeft - 1 : undefined }));
-                }), reconnectAttemptInterval || 5000);
+                function (event) { return onMessage(event); });
+                eventSource.onerror = (/**
+                 * @param {?} err
+                 * @return {?}
+                 */
+                function (err) { return errorHandler(err); });
+                if (typeof reconnectAttemptsLeft !== 'undefined') {
+                    reconnectAttemptsLeft--;
+                }
+                return;
             }
-        });
-        return eventSource;
+            clearInterval(interval);
+        }), reconnectAttemptInterval || 5000);
+        closeSubject.subscribe((/**
+         * @return {?}
+         */
+        function () {
+            reconnectAllowed.value = false;
+            eventSource.close();
+        }));
+        return closeSubject;
     };
     /**
      * @param {?} params

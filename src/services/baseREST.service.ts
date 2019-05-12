@@ -1,9 +1,9 @@
 import co from 'co'
-import {Injectable} from '@angular/core'
 import {HttpHeaders} from '@angular/common/http'
-
 import {GlobalEventsService} from './globalEvents/globalEvents.service'
+import {Injectable} from '@angular/core'
 import {RequestService} from './request.service'
+import {Subject} from 'rxjs'
 
 @Injectable()
 export class BaseRESTService {
@@ -111,14 +111,16 @@ export class BaseRESTService {
 		})
 	}
 
-	readStreamList(
+	streamReadList(
 		params: {[key: string]: any},
 		onMessage: Function,
 		options?: {onError?: Function, reconnectAttemptInterval?: number, reconnectAttemptsLeft?: number}
-	): EventSource {
-		const {onError, reconnectAttemptInterval, reconnectAttemptsLeft} = options || {} as any,
+	): Subject<void> {
+		const actualOptions = options || {},
+			{onError, reconnectAttemptInterval} = actualOptions,
 			errorHandler = onError ? onError : this.handleError.bind(this)
-		let url = `${window.location.origin}${this.baseUrl}/streamList`,
+		let reconnectAttemptsLeft = actualOptions.reconnectAttemptsLeft,
+			url = `${window.location.origin}${this.baseUrl}/streamList`,
 			stringifiedParams = this.stringifyGetParams(this.emptyToNull(params)),
 			firstParam = true
 		for (const key in stringifiedParams) {
@@ -130,24 +132,32 @@ export class BaseRESTService {
 			}
 			url += `${key}=${stringifiedParams[key]}`
 		}
-		let eventSource = new EventSource(url)
+		let eventSource = new EventSource(url),
+			closeSubject = new Subject<void>(),
+			reconnectAllowed = {value: true}
 		eventSource.onmessage = (event) => onMessage(event)
-		eventSource.onerror = (err) => {
-			errorHandler(err)
-			if ((typeof reconnectAttemptsLeft === 'undefined') || reconnectAttemptsLeft > 0) {
-				eventSource.close()
-				setTimeout(() => {
-					this.readStreamList(
-						params,
-						onMessage, {
-							...options,
-							reconnectAttemptsLeft: typeof reconnectAttemptsLeft === 'number' ? reconnectAttemptsLeft - 1 : undefined
-						}
-					)
-				}, reconnectAttemptInterval || 5000)
+		eventSource.onerror = (err) => errorHandler(err)
+		let interval = setInterval(() => {
+			if (
+				(eventSource.CLOSED === 2) &&
+				reconnectAllowed.value &&
+				((typeof reconnectAttemptsLeft === 'undefined') || reconnectAttemptsLeft > 0)
+			) {
+				eventSource = new EventSource(url)
+				eventSource.onmessage = (event) => onMessage(event)
+				eventSource.onerror = (err) => errorHandler(err)
+				if (typeof reconnectAttemptsLeft !== 'undefined') {
+					reconnectAttemptsLeft--
+				}
+				return
 			}
-		}
-		return eventSource
+			clearInterval(interval)
+		}, reconnectAttemptInterval || 5000)
+		closeSubject.subscribe(() => {
+			reconnectAllowed.value = false
+			eventSource.close()
+		})
+		return closeSubject
 	}
 
 	readSelectList(params): Promise<any> {
