@@ -842,7 +842,7 @@
                 var interval = setInterval(( /**
                  * @return {?}
                  */function () {
-                    if ((eventSource.CLOSED === 2) &&
+                    if ((eventSource.readyState === 2) &&
                         reconnectAllowed.value &&
                         ((typeof reconnectAttemptsLeft === 'undefined') || reconnectAttemptsLeft > 0)) {
                         eventSource = new EventSource(url);

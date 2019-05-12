@@ -1,3 +1,6 @@
+# 0.0.34
+- BaseRESTService.streamReadList hotfix.
+
 # 0.0.33
 - Renamed BaseRESTService.readStreamList to BaseRESTService.streamReadList and updated its reconnct mechanism. It now returns an RxJS Subject for closing the stream on next().
 

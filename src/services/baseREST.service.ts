@@ -139,7 +139,7 @@ export class BaseRESTService {
 		eventSource.onerror = (err) => errorHandler(err)
 		let interval = setInterval(() => {
 			if (
-				(eventSource.CLOSED === 2) &&
+				(eventSource.readyState === 2) &&
 				reconnectAllowed.value &&
 				((typeof reconnectAttemptsLeft === 'undefined') || reconnectAttemptsLeft > 0)
 			) {
