@@ -417,6 +417,7 @@ class BaseRESTService {
         this.globalEventsService = globalEventsService;
         this.requestService = requestService;
         this.baseUrl = '/';
+        this.fileTooLargeErrorMessage = 'The selected file is too large.';
         this.headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         this.redirectOnForbiddenUrl = null;
     }
@@ -482,6 +483,10 @@ class BaseRESTService {
         }
         if (this.redirectOnForbiddenUrl && (err.status === 401)) {
             this.globalEventsService.redirect(this.redirectOnForbiddenUrl);
+            return;
+        }
+        if (err.status === 403) {
+            this.globalEventsService.notify('error', this.fileTooLargeErrorMessage);
             return;
         }
         if (notifyOnError !== false) {

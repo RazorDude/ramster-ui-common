@@ -8,6 +8,7 @@ import {Subject} from 'rxjs'
 @Injectable()
 export class BaseRESTService {
 	baseUrl = '/'
+	fileTooLargeErrorMessage?: string = 'The selected file is too large.'
 	headers = new HttpHeaders({'Content-Type': 'application/json'})
 	redirectOnForbiddenUrl?: string = null
 
@@ -59,6 +60,10 @@ export class BaseRESTService {
 		}
 		if (this.redirectOnForbiddenUrl && (err.status === 401)) {
 			this.globalEventsService.redirect(this.redirectOnForbiddenUrl)
+			return
+		}
+		if (err.status === 403) {
+			this.globalEventsService.notify('error', this.fileTooLargeErrorMessage)
 			return
 		}
 		if (notifyOnError !== false) {

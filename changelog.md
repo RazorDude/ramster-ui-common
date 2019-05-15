@@ -1,3 +1,6 @@
+# 0.0.35
+- Added a file to large error message to the BaseRESTService.
+
 # 0.0.34
 - BaseRESTService.streamReadList hotfix.
 

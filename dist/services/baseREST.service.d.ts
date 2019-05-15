@@ -6,6 +6,7 @@ export declare class BaseRESTService {
     globalEventsService: GlobalEventsService;
     requestService: RequestService;
     baseUrl: string;
+    fileTooLargeErrorMessage?: string;
     headers: HttpHeaders;
     redirectOnForbiddenUrl?: string;
     constructor(globalEventsService: GlobalEventsService, requestService: RequestService);
