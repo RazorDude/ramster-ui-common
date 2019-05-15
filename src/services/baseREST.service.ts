@@ -62,7 +62,7 @@ export class BaseRESTService {
 			this.globalEventsService.redirect(this.redirectOnForbiddenUrl)
 			return
 		}
-		if (err.status === 403) {
+		if (err.status === 413) {
 			this.globalEventsService.notify('error', this.fileTooLargeErrorMessage)
 			return
 		}
