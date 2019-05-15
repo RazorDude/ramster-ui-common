@@ -16,12 +16,12 @@ export class FilesRESTService {
 		public requestService: RequestService
 	) {}
 
-	handleError(err): void {
+	handleError(err: any): void {
 		if (!err) {
 			this.globalEventsService.notify('error', 'An unknown error has occurred.')
 			return
 		}
-		if (err.status === 413) {
+		if ((err.status === 413) || (err.error && (err.error.status === 413))) {
 			this.globalEventsService.notify('error', 'The selected file is too large.')
 			return
 		}

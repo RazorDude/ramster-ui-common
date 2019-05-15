@@ -58,11 +58,11 @@ export class BaseRESTService {
 			}
 			return
 		}
-		if (this.redirectOnForbiddenUrl && (err.status === 401)) {
+		if (this.redirectOnForbiddenUrl && ((err.status === 401) || (err.error && (err.error.status === 401)))) {
 			this.globalEventsService.redirect(this.redirectOnForbiddenUrl)
 			return
 		}
-		if (err.status === 413) {
+		if ((err.status === 413) || (err.error && (err.error.status === 413))) {
 			this.globalEventsService.notify('error', this.fileTooLargeErrorMessage)
 			return
 		}

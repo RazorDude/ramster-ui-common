@@ -1,3 +1,6 @@
+# 0.0.38
+- Better error handling for the BaseRESTService and the FileRESTService.
+
 # 0.0.37
 - Added a file to large error message to the FilesRESTService.
 
