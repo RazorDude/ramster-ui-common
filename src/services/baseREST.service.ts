@@ -54,7 +54,7 @@ export class BaseRESTService {
 		const {notifyOnError} = options || {} as any
 		if (!err) {
 			if (notifyOnError !== false) {
-				this.globalEventsService.notify('error', 'An error has occurred.')
+				this.globalEventsService.notify('error', 'An unknown error has occurred.')
 			}
 			return
 		}

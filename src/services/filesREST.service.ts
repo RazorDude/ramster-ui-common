@@ -17,7 +17,15 @@ export class FilesRESTService {
 	) {}
 
 	handleError(err): void {
-		this.globalEventsService.notify('error', err && err.error && err.error.error || 'An error has occurred.')
+		if (!err) {
+			this.globalEventsService.notify('error', 'An unknown error has occurred.')
+			return
+		}
+		if (err.status === 413) {
+			this.globalEventsService.notify('error', 'The selected file is too large.')
+			return
+		}
+		this.globalEventsService.notify('error', err.error && err.error.error || 'An error has occurred.')
 	}
 
 	upload(file: File, params: {outputFileName: string, [x: string]: any}, options?: {handleError?: boolean}): Promise<any> {

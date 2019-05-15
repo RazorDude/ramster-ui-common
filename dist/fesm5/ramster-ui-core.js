@@ -574,7 +574,7 @@ var BaseRESTService = /** @class */ (function () {
         var notifyOnError = (options || (/** @type {?} */ ({}))).notifyOnError;
         if (!err) {
             if (notifyOnError !== false) {
-                this.globalEventsService.notify('error', 'An error has occurred.');
+                this.globalEventsService.notify('error', 'An unknown error has occurred.');
             }
             return;
         }
@@ -1017,7 +1017,15 @@ var FilesRESTService = /** @class */ (function () {
      * @return {?}
      */
     function (err) {
-        this.globalEventsService.notify('error', err && err.error && err.error.error || 'An error has occurred.');
+        if (!err) {
+            this.globalEventsService.notify('error', 'An unknown error has occurred.');
+            return;
+        }
+        if (err.status === 413) {
+            this.globalEventsService.notify('error', 'The selected file is too large.');
+            return;
+        }
+        this.globalEventsService.notify('error', err.error && err.error.error || 'An error has occurred.');
     };
     /**
      * @param {?} file

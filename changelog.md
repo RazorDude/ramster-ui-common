@@ -1,3 +1,6 @@
+# 0.0.37
+- Added a file to large error message to the FilesRESTService.
+
 # 0.0.36
 - Actually did it.
 
