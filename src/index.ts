@@ -22,7 +22,7 @@ export class RamsterUICoreModule {}
 
 export * from './components/base-layout.component'
 export * from './components/base-page.component'
-export * from './components/componentInjector'
+export {ComponentInjector, ComponentInjectorAreaDirective}
 export * from './services/baseREST.service'
 export * from './services/filesREST.service'
 export * from './services/globalEvents/globalEvents.service'

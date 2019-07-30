@@ -1471,10 +1471,10 @@
      */
 
     exports.RamsterUICoreModule = RamsterUICoreModule;
-    exports.BaseLayoutComponent = BaseLayoutComponent;
-    exports.BasePageComponent = BasePageComponent;
     exports.ComponentInjector = ComponentInjector;
     exports.ComponentInjectorAreaDirective = ComponentInjectorAreaDirective;
+    exports.BaseLayoutComponent = BaseLayoutComponent;
+    exports.BasePageComponent = BasePageComponent;
     exports.BaseRESTService = BaseRESTService;
     exports.FilesRESTService = FilesRESTService;
     exports.GlobalEventsService = GlobalEventsService;
@@ -1482,8 +1482,6 @@
     exports.RequestService = RequestService;
     exports.getNested = getNested;
     exports.setNested = setNested;
-    exports.ɵa = ComponentInjector;
-    exports.ɵb = ComponentInjectorAreaDirective;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

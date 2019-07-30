@@ -1231,6 +1231,6 @@ RamsterUICoreModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { RamsterUICoreModule, BaseLayoutComponent, BasePageComponent, ComponentInjector, ComponentInjectorAreaDirective, BaseRESTService, FilesRESTService, GlobalEventsService, ModelRESTServiceProviderService, RequestService, getNested, setNested, ComponentInjector as ɵa, ComponentInjectorAreaDirective as ɵb };
+export { RamsterUICoreModule, ComponentInjector, ComponentInjectorAreaDirective, BaseLayoutComponent, BasePageComponent, BaseRESTService, FilesRESTService, GlobalEventsService, ModelRESTServiceProviderService, RequestService, getNested, setNested };
 
 //# sourceMappingURL=ramster-ui-core.js.map

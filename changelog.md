@@ -1,3 +1,6 @@
+# 0.1.2
+- Export bundle fix.
+
 # 0.1.1
 - Export bundle fix.
 
