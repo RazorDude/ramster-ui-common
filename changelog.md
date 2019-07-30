@@ -1,3 +1,6 @@
+# 0.1.1
+- Export bundle fix.
+
 # 0.1.0
 - Added the componentInjector component and directive. It can be used to inject components in the templates. Usage:<br/>
 ``<component-injector [component]='Component' [data]='data' />``
