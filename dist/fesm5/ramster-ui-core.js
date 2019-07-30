@@ -74,11 +74,6 @@ var ComponentInjector = /** @class */ (function () {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 var BaseLayoutComponent = /** @class */ (function () {
     function BaseLayoutComponent(globalEventsService, router) {
         this.globalEventsService = globalEventsService;
@@ -1424,8 +1419,7 @@ var RamsterUICoreModule = /** @class */ (function () {
                         ComponentInjectorAreaDirective
                     ],
                     exports: [
-                        ComponentInjector,
-                        ComponentInjectorAreaDirective
+                        ComponentInjector
                     ]
                 },] }
     ];
@@ -1437,6 +1431,6 @@ var RamsterUICoreModule = /** @class */ (function () {
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { RamsterUICoreModule, ComponentInjector, ComponentInjectorAreaDirective, BaseLayoutComponent, BasePageComponent, BaseRESTService, FilesRESTService, GlobalEventsService, ModelRESTServiceProviderService, RequestService, getNested, setNested };
+export { RamsterUICoreModule, BaseLayoutComponent, BasePageComponent, BaseRESTService, FilesRESTService, GlobalEventsService, ModelRESTServiceProviderService, RequestService, getNested, setNested, ComponentInjector as ɵa, ComponentInjectorAreaDirective as ɵb };
 
 //# sourceMappingURL=ramster-ui-core.js.map

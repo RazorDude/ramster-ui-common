@@ -2,7 +2,8 @@
 import {CommonModule} from '@angular/common'
 import {NgModule} from '@angular/core'
 
-import {ComponentInjector, ComponentInjectorAreaDirective} from './components/componentInjector'
+import {ComponentInjector} from './components/componentInjector/componentInjector.component'
+import {ComponentInjectorAreaDirective} from './components/componentInjector/componentInjector.directive'
 
 
 @NgModule({
@@ -14,15 +15,14 @@ import {ComponentInjector, ComponentInjectorAreaDirective} from './components/co
 		ComponentInjectorAreaDirective
 	],
 	exports: [
-		ComponentInjector,
-		ComponentInjectorAreaDirective
+		ComponentInjector
 	]
 })
 export class RamsterUICoreModule {}
 
 export * from './components/base-layout.component'
 export * from './components/base-page.component'
-export {ComponentInjector, ComponentInjectorAreaDirective}
+// export {ComponentInjector}
 export * from './services/baseREST.service'
 export * from './services/filesREST.service'
 export * from './services/globalEvents/globalEvents.service'

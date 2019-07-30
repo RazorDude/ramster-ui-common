@@ -76,11 +76,6 @@ ComponentInjector.propDecorators = {
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-
-/**
- * @fileoverview added by tsickle
- * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class BaseLayoutComponent {
     /**
      * @param {?} globalEventsService
@@ -1220,8 +1215,7 @@ RamsterUICoreModule.decorators = [
                     ComponentInjectorAreaDirective
                 ],
                 exports: [
-                    ComponentInjector,
-                    ComponentInjectorAreaDirective
+                    ComponentInjector
                 ]
             },] }
 ];
@@ -1231,6 +1225,6 @@ RamsterUICoreModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { RamsterUICoreModule, ComponentInjector, ComponentInjectorAreaDirective, BaseLayoutComponent, BasePageComponent, BaseRESTService, FilesRESTService, GlobalEventsService, ModelRESTServiceProviderService, RequestService, getNested, setNested };
+export { RamsterUICoreModule, BaseLayoutComponent, BasePageComponent, BaseRESTService, FilesRESTService, GlobalEventsService, ModelRESTServiceProviderService, RequestService, getNested, setNested, ComponentInjector as ɵa, ComponentInjectorAreaDirective as ɵb };
 
 //# sourceMappingURL=ramster-ui-core.js.map

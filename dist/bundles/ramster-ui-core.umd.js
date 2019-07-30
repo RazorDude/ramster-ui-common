@@ -78,11 +78,6 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-
-    /**
-     * @fileoverview added by tsickle
-     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var BaseLayoutComponent = /** @class */ (function () {
         function BaseLayoutComponent(globalEventsService, router) {
             this.globalEventsService = globalEventsService;
@@ -1457,8 +1452,7 @@
                             ComponentInjectorAreaDirective
                         ],
                         exports: [
-                            ComponentInjector,
-                            ComponentInjectorAreaDirective
+                            ComponentInjector
                         ]
                     },] }
         ];
@@ -1471,8 +1465,6 @@
      */
 
     exports.RamsterUICoreModule = RamsterUICoreModule;
-    exports.ComponentInjector = ComponentInjector;
-    exports.ComponentInjectorAreaDirective = ComponentInjectorAreaDirective;
     exports.BaseLayoutComponent = BaseLayoutComponent;
     exports.BasePageComponent = BasePageComponent;
     exports.BaseRESTService = BaseRESTService;
@@ -1482,6 +1474,8 @@
     exports.RequestService = RequestService;
     exports.getNested = getNested;
     exports.setNested = setNested;
+    exports.ɵa = ComponentInjector;
+    exports.ɵb = ComponentInjectorAreaDirective;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
