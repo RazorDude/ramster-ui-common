@@ -1,10 +1,7 @@
-'use strict'
-
-import {ActivatedRoute, Router} from '@angular/router'
+import {ActivatedRoute} from '@angular/router'
+import {BasePageComponent, GlobalEventsService} from '../../../../src'
 import {Component} from '@angular/core'
-
-// import {AutocompleteFieldDataInterface, FileInputFieldDataInterface, InputFieldDataInterface, validators} from 'ramster-ui-forms'
-import {BasePageComponent, GlobalEventsService, GESRedirectOptionsInterface} from '../../../../src'
+import {TestComponent} from '../../components/testComponent'
 import {TestModelRESTService} from '../../models/test/test.restService'
 
 @Component({
@@ -12,9 +9,10 @@ import {TestModelRESTService} from '../../models/test/test.restService'
 	templateUrl: './home.template.pug',
 	styleUrls: [
 		'./home.styles.scss'
-	],
+	]
 })
 export class HomePageComponent extends BasePageComponent {
+	TestComponent = TestComponent
 
 	constructor(
 		activatedRoute: ActivatedRoute,

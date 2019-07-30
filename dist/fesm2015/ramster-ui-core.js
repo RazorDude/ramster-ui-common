@@ -4,7 +4,78 @@ import { __rest } from 'tslib';
 import { Subject } from 'rxjs';
 import co from 'co';
 import { HttpClient, HttpRequest, HttpHeaders } from '@angular/common/http';
-import { Injectable, Injector, NgModule } from '@angular/core';
+import { Directive, ViewContainerRef, Component, ChangeDetectorRef, ComponentFactoryResolver, Input, ViewChild, Injectable, Injector, NgModule } from '@angular/core';
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ComponentInjectorAreaDirective {
+    /**
+     * @param {?} viewContainerRef
+     */
+    constructor(viewContainerRef) {
+        this.viewContainerRef = viewContainerRef;
+    }
+}
+ComponentInjectorAreaDirective.decorators = [
+    { type: Directive, args: [{
+                selector: '[component-injector-area]'
+            },] }
+];
+/** @nocollapse */
+ComponentInjectorAreaDirective.ctorParameters = () => [
+    { type: ViewContainerRef }
+];
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class ComponentInjector {
+    /**
+     * @param {?} cdRef
+     * @param {?} componentFactoryResolver
+     */
+    constructor(cdRef, componentFactoryResolver) {
+        this.cdRef = cdRef;
+        this.componentFactoryResolver = componentFactoryResolver;
+    }
+    /**
+     * @return {?}
+     */
+    ngAfterViewInit() {
+        /** @type {?} */
+        let componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.component);
+        /** @type {?} */
+        let viewContainerRef = this.componentRef.viewContainerRef;
+        viewContainerRef.clear();
+        this.componentRefInstance = viewContainerRef.createComponent(componentFactory).instance;
+        this.componentRefInstance.data = this.data;
+        this.cdRef.detectChanges();
+    }
+}
+ComponentInjector.decorators = [
+    { type: Component, args: [{
+                selector: 'component-injector',
+                template: "<!DOCTYPE html><ng-template component-injector-area></ng-template>"
+            }] }
+];
+/** @nocollapse */
+ComponentInjector.ctorParameters = () => [
+    { type: ChangeDetectorRef },
+    { type: ComponentFactoryResolver }
+];
+ComponentInjector.propDecorators = {
+    componentRef: [{ type: ViewChild, args: [ComponentInjectorAreaDirective,] }],
+    component: [{ type: Input }],
+    data: [{ type: Input }]
+};
+
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 
 /**
  * @fileoverview added by tsickle
@@ -1143,6 +1214,14 @@ RamsterUICoreModule.decorators = [
     { type: NgModule, args: [{
                 imports: [
                     CommonModule
+                ],
+                declarations: [
+                    ComponentInjector,
+                    ComponentInjectorAreaDirective
+                ],
+                exports: [
+                    ComponentInjector,
+                    ComponentInjectorAreaDirective
                 ]
             },] }
 ];
@@ -1152,6 +1231,6 @@ RamsterUICoreModule.decorators = [
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { RamsterUICoreModule, BaseLayoutComponent, BasePageComponent, BaseRESTService, FilesRESTService, GlobalEventsService, ModelRESTServiceProviderService, RequestService, getNested, setNested };
+export { RamsterUICoreModule, BaseLayoutComponent, BasePageComponent, ComponentInjector, ComponentInjectorAreaDirective, BaseRESTService, FilesRESTService, GlobalEventsService, ModelRESTServiceProviderService, RequestService, getNested, setNested, ComponentInjector as ɵa, ComponentInjectorAreaDirective as ɵb };
 
 //# sourceMappingURL=ramster-ui-core.js.map

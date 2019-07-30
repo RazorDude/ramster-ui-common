@@ -8,3 +8,5 @@ debug.log
 .vscode
 dist
 package-lock.json
+**/*.html
+**/*.css

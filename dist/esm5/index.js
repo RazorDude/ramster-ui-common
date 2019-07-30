@@ -2,10 +2,10 @@
  * @fileoverview added by tsickle
  * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-'use strict';
 // angular dependencies
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ComponentInjector, ComponentInjectorAreaDirective } from './components/componentInjector';
 var RamsterUICoreModule = /** @class */ (function () {
     function RamsterUICoreModule() {
     }
@@ -13,6 +13,14 @@ var RamsterUICoreModule = /** @class */ (function () {
         { type: NgModule, args: [{
                     imports: [
                         CommonModule
+                    ],
+                    declarations: [
+                        ComponentInjector,
+                        ComponentInjectorAreaDirective
+                    ],
+                    exports: [
+                        ComponentInjector,
+                        ComponentInjectorAreaDirective
                     ]
                 },] }
     ];
@@ -21,6 +29,7 @@ var RamsterUICoreModule = /** @class */ (function () {
 export { RamsterUICoreModule };
 export { BaseLayoutComponent } from './components/base-layout.component';
 export { BasePageComponent } from './components/base-page.component';
+export { ComponentInjector, ComponentInjectorAreaDirective } from './components/componentInjector';
 export { BaseRESTService } from './services/baseREST.service';
 export { FilesRESTService } from './services/filesREST.service';
 export { GlobalEventsService } from './services/globalEvents/globalEvents.service';
@@ -29,4 +38,4 @@ export { ModelRESTServiceProviderService } from './services/modelRESTServiceProv
 export { RequestService } from './services/request.service';
 export { getNested, setNested } from './utils/toolbelt';
 export {} from './interfaces/selectList.interface';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290Ijoibmc6Ly9yYW1zdGVyLXVpLWNvcmUvIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7O0FBQUEsWUFBWSxDQUFBOztBQUdaLE9BQU8sRUFBQyxZQUFZLEVBQUMsTUFBTSxpQkFBaUIsQ0FBQTtBQUM1QyxPQUFPLEVBQUMsUUFBUSxFQUFDLE1BQU0sZUFBZSxDQUFBO0FBR3RDO0lBQUE7SUFLa0MsQ0FBQzs7Z0JBTGxDLFFBQVEsU0FBQztvQkFDVCxPQUFPLEVBQUU7d0JBQ1IsWUFBWTtxQkFDWjtpQkFDRDs7SUFDaUMsMEJBQUM7Q0FBQSxBQUxuQyxJQUttQztTQUF0QixtQkFBbUI7QUFFaEMsb0NBQWMsb0NBQW9DLENBQUE7QUFDbEQsa0NBQWMsa0NBQWtDLENBQUE7QUFDaEQsZ0NBQWMsNkJBQTZCLENBQUE7QUFDM0MsaUNBQWMsOEJBQThCLENBQUE7QUFDNUMsb0NBQWMsOENBQThDLENBQUE7QUFDNUQsZUFBYyxpREFBaUQsQ0FBQTtBQUMvRCxnREFBYyw2Q0FBNkMsQ0FBQTtBQUMzRCwrQkFBYyw0QkFBNEIsQ0FBQTtBQUMxQyxxQ0FBYyxrQkFBa0IsQ0FBQTtBQUNoQyxlQUFjLG1DQUFtQyxDQUFBIiwic291cmNlc0NvbnRlbnQiOlsiJ3VzZSBzdHJpY3QnXHJcblxyXG4vLyBhbmd1bGFyIGRlcGVuZGVuY2llc1xyXG5pbXBvcnQge0NvbW1vbk1vZHVsZX0gZnJvbSAnQGFuZ3VsYXIvY29tbW9uJ1xyXG5pbXBvcnQge05nTW9kdWxlfSBmcm9tICdAYW5ndWxhci9jb3JlJ1xyXG5cclxuXHJcbkBOZ01vZHVsZSh7XHJcblx0aW1wb3J0czogW1xyXG5cdFx0Q29tbW9uTW9kdWxlXHJcblx0XVxyXG59KVxyXG5leHBvcnQgY2xhc3MgUmFtc3RlclVJQ29yZU1vZHVsZSB7fVxyXG5cclxuZXhwb3J0ICogZnJvbSAnLi9jb21wb25lbnRzL2Jhc2UtbGF5b3V0LmNvbXBvbmVudCdcclxuZXhwb3J0ICogZnJvbSAnLi9jb21wb25lbnRzL2Jhc2UtcGFnZS5jb21wb25lbnQnXHJcbmV4cG9ydCAqIGZyb20gJy4vc2VydmljZXMvYmFzZVJFU1Quc2VydmljZSdcclxuZXhwb3J0ICogZnJvbSAnLi9zZXJ2aWNlcy9maWxlc1JFU1Quc2VydmljZSdcclxuZXhwb3J0ICogZnJvbSAnLi9zZXJ2aWNlcy9nbG9iYWxFdmVudHMvZ2xvYmFsRXZlbnRzLnNlcnZpY2UnXHJcbmV4cG9ydCAqIGZyb20gJy4vc2VydmljZXMvZ2xvYmFsRXZlbnRzL2dsb2JhbEV2ZW50cy5pbnRlcmZhY2VzJ1xyXG5leHBvcnQgKiBmcm9tICcuL3NlcnZpY2VzL21vZGVsUkVTVFNlcnZpY2VQcm92aWRlci5zZXJ2aWNlJ1xyXG5leHBvcnQgKiBmcm9tICcuL3NlcnZpY2VzL3JlcXVlc3Quc2VydmljZSdcclxuZXhwb3J0ICogZnJvbSAnLi91dGlscy90b29sYmVsdCdcclxuZXhwb3J0ICogZnJvbSAnLi9pbnRlcmZhY2VzL3NlbGVjdExpc3QuaW50ZXJmYWNlJ1xyXG4iXX0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290Ijoibmc6Ly9yYW1zdGVyLXVpLWNvcmUvIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUNBLE9BQU8sRUFBQyxZQUFZLEVBQUMsTUFBTSxpQkFBaUIsQ0FBQTtBQUM1QyxPQUFPLEVBQUMsUUFBUSxFQUFDLE1BQU0sZUFBZSxDQUFBO0FBRXRDLE9BQU8sRUFBQyxpQkFBaUIsRUFBRSw4QkFBOEIsRUFBQyxNQUFNLGdDQUFnQyxDQUFBO0FBR2hHO0lBQUE7SUFha0MsQ0FBQzs7Z0JBYmxDLFFBQVEsU0FBQztvQkFDVCxPQUFPLEVBQUU7d0JBQ1IsWUFBWTtxQkFDWjtvQkFDRCxZQUFZLEVBQUU7d0JBQ2IsaUJBQWlCO3dCQUNqQiw4QkFBOEI7cUJBQzlCO29CQUNELE9BQU8sRUFBRTt3QkFDUixpQkFBaUI7d0JBQ2pCLDhCQUE4QjtxQkFDOUI7aUJBQ0Q7O0lBQ2lDLDBCQUFDO0NBQUEsQUFibkMsSUFhbUM7U0FBdEIsbUJBQW1CO0FBRWhDLG9DQUFjLG9DQUFvQyxDQUFBO0FBQ2xELGtDQUFjLGtDQUFrQyxDQUFBO0FBQ2hELGtFQUFjLGdDQUFnQyxDQUFBO0FBQzlDLGdDQUFjLDZCQUE2QixDQUFBO0FBQzNDLGlDQUFjLDhCQUE4QixDQUFBO0FBQzVDLG9DQUFjLDhDQUE4QyxDQUFBO0FBQzVELGVBQWMsaURBQWlELENBQUE7QUFDL0QsZ0RBQWMsNkNBQTZDLENBQUE7QUFDM0QsK0JBQWMsNEJBQTRCLENBQUE7QUFDMUMscUNBQWMsa0JBQWtCLENBQUE7QUFDaEMsZUFBYyxtQ0FBbUMsQ0FBQSIsInNvdXJjZXNDb250ZW50IjpbIi8vIGFuZ3VsYXIgZGVwZW5kZW5jaWVzXHJcbmltcG9ydCB7Q29tbW9uTW9kdWxlfSBmcm9tICdAYW5ndWxhci9jb21tb24nXHJcbmltcG9ydCB7TmdNb2R1bGV9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnXHJcblxyXG5pbXBvcnQge0NvbXBvbmVudEluamVjdG9yLCBDb21wb25lbnRJbmplY3RvckFyZWFEaXJlY3RpdmV9IGZyb20gJy4vY29tcG9uZW50cy9jb21wb25lbnRJbmplY3RvcidcclxuXHJcblxyXG5ATmdNb2R1bGUoe1xyXG5cdGltcG9ydHM6IFtcclxuXHRcdENvbW1vbk1vZHVsZVxyXG5cdF0sXHJcblx0ZGVjbGFyYXRpb25zOiBbXHJcblx0XHRDb21wb25lbnRJbmplY3RvcixcclxuXHRcdENvbXBvbmVudEluamVjdG9yQXJlYURpcmVjdGl2ZVxyXG5cdF0sXHJcblx0ZXhwb3J0czogW1xyXG5cdFx0Q29tcG9uZW50SW5qZWN0b3IsXHJcblx0XHRDb21wb25lbnRJbmplY3RvckFyZWFEaXJlY3RpdmVcclxuXHRdXHJcbn0pXHJcbmV4cG9ydCBjbGFzcyBSYW1zdGVyVUlDb3JlTW9kdWxlIHt9XHJcblxyXG5leHBvcnQgKiBmcm9tICcuL2NvbXBvbmVudHMvYmFzZS1sYXlvdXQuY29tcG9uZW50J1xyXG5leHBvcnQgKiBmcm9tICcuL2NvbXBvbmVudHMvYmFzZS1wYWdlLmNvbXBvbmVudCdcclxuZXhwb3J0ICogZnJvbSAnLi9jb21wb25lbnRzL2NvbXBvbmVudEluamVjdG9yJ1xyXG5leHBvcnQgKiBmcm9tICcuL3NlcnZpY2VzL2Jhc2VSRVNULnNlcnZpY2UnXHJcbmV4cG9ydCAqIGZyb20gJy4vc2VydmljZXMvZmlsZXNSRVNULnNlcnZpY2UnXHJcbmV4cG9ydCAqIGZyb20gJy4vc2VydmljZXMvZ2xvYmFsRXZlbnRzL2dsb2JhbEV2ZW50cy5zZXJ2aWNlJ1xyXG5leHBvcnQgKiBmcm9tICcuL3NlcnZpY2VzL2dsb2JhbEV2ZW50cy9nbG9iYWxFdmVudHMuaW50ZXJmYWNlcydcclxuZXhwb3J0ICogZnJvbSAnLi9zZXJ2aWNlcy9tb2RlbFJFU1RTZXJ2aWNlUHJvdmlkZXIuc2VydmljZSdcclxuZXhwb3J0ICogZnJvbSAnLi9zZXJ2aWNlcy9yZXF1ZXN0LnNlcnZpY2UnXHJcbmV4cG9ydCAqIGZyb20gJy4vdXRpbHMvdG9vbGJlbHQnXHJcbmV4cG9ydCAqIGZyb20gJy4vaW50ZXJmYWNlcy9zZWxlY3RMaXN0LmludGVyZmFjZSdcclxuIl19

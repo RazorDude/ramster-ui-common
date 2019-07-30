@@ -1,3 +1,7 @@
+# 0.1.0
+- Added the componentInjector component and directive. It can be used to inject components in the templates. Usage:<br/>
+``<component-injector [component]='Component' [data]='data' />``
+
 # 0.0.38
 - Better error handling for the BaseRESTService and the FileRESTService.
 

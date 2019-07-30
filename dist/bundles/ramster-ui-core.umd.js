@@ -10,6 +10,79 @@
      * @fileoverview added by tsickle
      * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    var ComponentInjectorAreaDirective = /** @class */ (function () {
+        function ComponentInjectorAreaDirective(viewContainerRef) {
+            this.viewContainerRef = viewContainerRef;
+        }
+        ComponentInjectorAreaDirective.decorators = [
+            { type: core.Directive, args: [{
+                        selector: '[component-injector-area]'
+                    },] }
+        ];
+        /** @nocollapse */
+        ComponentInjectorAreaDirective.ctorParameters = function () {
+            return [
+                { type: core.ViewContainerRef }
+            ];
+        };
+        return ComponentInjectorAreaDirective;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ComponentInjector = /** @class */ (function () {
+        function ComponentInjector(cdRef, componentFactoryResolver) {
+            this.cdRef = cdRef;
+            this.componentFactoryResolver = componentFactoryResolver;
+        }
+        /**
+         * @return {?}
+         */
+        ComponentInjector.prototype.ngAfterViewInit = /**
+         * @return {?}
+         */
+            function () {
+                /** @type {?} */
+                var componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.component);
+                /** @type {?} */
+                var viewContainerRef = this.componentRef.viewContainerRef;
+                viewContainerRef.clear();
+                this.componentRefInstance = viewContainerRef.createComponent(componentFactory).instance;
+                this.componentRefInstance.data = this.data;
+                this.cdRef.detectChanges();
+            };
+        ComponentInjector.decorators = [
+            { type: core.Component, args: [{
+                        selector: 'component-injector',
+                        template: "<!DOCTYPE html><ng-template component-injector-area></ng-template>"
+                    }] }
+        ];
+        /** @nocollapse */
+        ComponentInjector.ctorParameters = function () {
+            return [
+                { type: core.ChangeDetectorRef },
+                { type: core.ComponentFactoryResolver }
+            ];
+        };
+        ComponentInjector.propDecorators = {
+            componentRef: [{ type: core.ViewChild, args: [ComponentInjectorAreaDirective,] }],
+            component: [{ type: core.Input }],
+            data: [{ type: core.Input }]
+        };
+        return ComponentInjector;
+    }());
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var BaseLayoutComponent = /** @class */ (function () {
         function BaseLayoutComponent(globalEventsService, router) {
             this.globalEventsService = globalEventsService;
@@ -1378,6 +1451,14 @@
             { type: core.NgModule, args: [{
                         imports: [
                             common.CommonModule
+                        ],
+                        declarations: [
+                            ComponentInjector,
+                            ComponentInjectorAreaDirective
+                        ],
+                        exports: [
+                            ComponentInjector,
+                            ComponentInjectorAreaDirective
                         ]
                     },] }
         ];
@@ -1392,6 +1473,8 @@
     exports.RamsterUICoreModule = RamsterUICoreModule;
     exports.BaseLayoutComponent = BaseLayoutComponent;
     exports.BasePageComponent = BasePageComponent;
+    exports.ComponentInjector = ComponentInjector;
+    exports.ComponentInjectorAreaDirective = ComponentInjectorAreaDirective;
     exports.BaseRESTService = BaseRESTService;
     exports.FilesRESTService = FilesRESTService;
     exports.GlobalEventsService = GlobalEventsService;
@@ -1399,6 +1482,8 @@
     exports.RequestService = RequestService;
     exports.getNested = getNested;
     exports.setNested = setNested;
+    exports.ɵa = ComponentInjector;
+    exports.ɵb = ComponentInjectorAreaDirective;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

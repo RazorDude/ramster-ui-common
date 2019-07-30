@@ -1,5 +1,3 @@
-'use strict'
-
 // angular dependencies
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import {BrowserModule} from '@angular/platform-browser'
@@ -14,16 +12,18 @@ import {TestModelRESTService} from './models/test/test.restService'
 // ramster components and services
 import {GlobalEventsService, RamsterUICoreModule, RequestService} from '../../src'
 
+import {TestComponent} from './components/testComponent'
+
 import {LayoutComponent} from './layout/layout.component'
 
 // page components
 import {HomePageComponent} from './pages/home/home.component'
 
 
-
 const routes: Routes = [
-	{path: '', component: HomePageComponent }
+	{path: '', component: HomePageComponent}
 ]
+
 
 @NgModule({
 	imports: [
@@ -36,6 +36,7 @@ const routes: Routes = [
 	],
 	exports: [RouterModule],
 	declarations: [
+		TestComponent,
 		LayoutComponent,
 		HomePageComponent
 	],
@@ -43,6 +44,9 @@ const routes: Routes = [
 		GlobalEventsService,
 		RequestService,
 		TestModelRESTService
+	],
+	entryComponents: [
+		TestComponent
 	],
 	bootstrap: [LayoutComponent]
 })
