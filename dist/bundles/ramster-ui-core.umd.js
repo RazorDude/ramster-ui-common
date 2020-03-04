@@ -1313,11 +1313,13 @@
     var getNested = ( /**
      * @param {?} parent
      * @param {?} field
+     * @param {?=} options
      * @return {?}
-     */function (parent, field) {
+     */function (parent, field, options) {
         if ((typeof parent !== 'object') || (parent === null) || (typeof field !== 'string') || !field.length) {
             return undefined;
         }
+        var arrayItemsShouldBeUnique = (options || (( /** @type {?} */({})))).arrayItemsShouldBeUnique;
         /** @type {?} */
         var fieldData = field.split('.');
         /** @type {?} */
@@ -1389,16 +1391,15 @@
                                  * @param {?} innerValueItem
                                  * @return {?}
                                  */function (innerValueItem) {
-                                    if (currentElement.indexOf(innerValueItem) === -1) {
+                                    if (!arrayItemsShouldBeUnique || (arrayItemsShouldBeUnique && (currentElement.indexOf(innerValueItem) === -1))) {
                                         currentElement.push(innerValueItem);
                                     }
                                 }));
-                                if (currentElement.indexOf(innerValue) === -1) {
-                                    currentElement.push(innerValue);
-                                }
                                 return;
                             }
-                            currentElement.push(innerValue);
+                            if (!arrayItemsShouldBeUnique || (arrayItemsShouldBeUnique && (currentElement.indexOf(innerValue) === -1))) {
+                                currentElement.push(innerValue);
+                            }
                         }
                     }));
                     return { value: currentElement };

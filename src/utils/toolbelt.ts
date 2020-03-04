@@ -1,7 +1,12 @@
-export const getNested = (parent: any, field: string): any => {
+export const getNested = (
+	parent: any,
+	field: string,
+	options?: {arrayItemsShouldBeUnique?: boolean}
+): any => {
 	if ((typeof parent !== 'object') || (parent === null) || (typeof field !== 'string') || !field.length) {
 		return undefined
 	}
+	const {arrayItemsShouldBeUnique} = (options || ({} as any))
 	let fieldData = field.split('.'),
 		fieldDataLength = fieldData.length,
 		currentElement = parent
@@ -57,16 +62,15 @@ export const getNested = (parent: any, field: string): any => {
 						// if the innerValue is an array too, merge it with the currentElement - this way we can have nested arrays without indexes
 						if (innerValue instanceof Array) {
 							innerValue.forEach((innerValueItem) => {
-								if (currentElement.indexOf(innerValueItem) === -1) {
+								if (!arrayItemsShouldBeUnique || (arrayItemsShouldBeUnique && (currentElement.indexOf(innerValueItem) === -1))) {
 									currentElement.push(innerValueItem)
 								}
 							})
-							if (currentElement.indexOf(innerValue) === -1) {
-								currentElement.push(innerValue)
-							}
 							return
 						}
-						currentElement.push(innerValue)
+						if (!arrayItemsShouldBeUnique || (arrayItemsShouldBeUnique && (currentElement.indexOf(innerValue) === -1))) {
+							currentElement.push(innerValue)
+						}
 					}
 				})
 				return currentElement

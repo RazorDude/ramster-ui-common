@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { __rest, __generator } from 'tslib';
+import { __generator, __rest } from 'tslib';
 import co from 'co';
 import { HttpClient, HttpRequest, HttpHeaders } from '@angular/common/http';
 import { Directive, ViewContainerRef, Component, ChangeDetectorRef, ComponentFactoryResolver, Input, ViewChild, Injectable, Injector, NgModule } from '@angular/core';
@@ -1268,12 +1268,14 @@ var ModelRESTServiceProviderService = /** @class */ (function () {
 var getNested = (/**
  * @param {?} parent
  * @param {?} field
+ * @param {?=} options
  * @return {?}
  */
-function (parent, field) {
+function (parent, field, options) {
     if ((typeof parent !== 'object') || (parent === null) || (typeof field !== 'string') || !field.length) {
         return undefined;
     }
+    var arrayItemsShouldBeUnique = (options || ((/** @type {?} */ ({})))).arrayItemsShouldBeUnique;
     /** @type {?} */
     var fieldData = field.split('.');
     /** @type {?} */
@@ -1351,16 +1353,15 @@ function (parent, field) {
                              * @return {?}
                              */
                             function (innerValueItem) {
-                                if (currentElement.indexOf(innerValueItem) === -1) {
+                                if (!arrayItemsShouldBeUnique || (arrayItemsShouldBeUnique && (currentElement.indexOf(innerValueItem) === -1))) {
                                     currentElement.push(innerValueItem);
                                 }
                             }));
-                            if (currentElement.indexOf(innerValue) === -1) {
-                                currentElement.push(innerValue);
-                            }
                             return;
                         }
-                        currentElement.push(innerValue);
+                        if (!arrayItemsShouldBeUnique || (arrayItemsShouldBeUnique && (currentElement.indexOf(innerValue) === -1))) {
+                            currentElement.push(innerValue);
+                        }
                     }
                 }));
                 return { value: currentElement };

@@ -1073,12 +1073,14 @@ ModelRESTServiceProviderService.ctorParameters = () => [
 const getNested = (/**
  * @param {?} parent
  * @param {?} field
+ * @param {?=} options
  * @return {?}
  */
-(parent, field) => {
+(parent, field, options) => {
     if ((typeof parent !== 'object') || (parent === null) || (typeof field !== 'string') || !field.length) {
         return undefined;
     }
+    const { arrayItemsShouldBeUnique } = (options || ((/** @type {?} */ ({}))));
     /** @type {?} */
     let fieldData = field.split('.');
     /** @type {?} */
@@ -1156,16 +1158,15 @@ const getNested = (/**
                              * @return {?}
                              */
                             (innerValueItem) => {
-                                if (currentElement.indexOf(innerValueItem) === -1) {
+                                if (!arrayItemsShouldBeUnique || (arrayItemsShouldBeUnique && (currentElement.indexOf(innerValueItem) === -1))) {
                                     currentElement.push(innerValueItem);
                                 }
                             }));
-                            if (currentElement.indexOf(innerValue) === -1) {
-                                currentElement.push(innerValue);
-                            }
                             return;
                         }
-                        currentElement.push(innerValue);
+                        if (!arrayItemsShouldBeUnique || (arrayItemsShouldBeUnique && (currentElement.indexOf(innerValue) === -1))) {
+                            currentElement.push(innerValue);
+                        }
                     }
                 }));
                 return currentElement;

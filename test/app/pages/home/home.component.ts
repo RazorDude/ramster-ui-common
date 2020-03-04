@@ -1,5 +1,5 @@
 import {ActivatedRoute} from '@angular/router'
-import {BasePageComponent, GlobalEventsService} from '../../../../src'
+import {BasePageComponent, getNested, GlobalEventsService} from '../../../../src'
 import {Component} from '@angular/core'
 import {TestComponent} from '../../components/testComponent'
 import {TestModelRESTService} from '../../models/test/test.restService'
@@ -24,6 +24,11 @@ export class HomePageComponent extends BasePageComponent {
 
 	reset(): void {
 		super.reset()
+
+		console.log(
+			getNested({testKey: [{id: 1}, {id: 1}, {id: 1}]}, 'testKey.id'),
+			getNested({testKey: [{id: 1}, {id: 1}, {id: 1}]}, 'testKey.id', {arrayItemsShouldBeUnique: true})
+		)
 
 		this.globalEventsService.setLayoutData({hasHeader: true})
 	}
