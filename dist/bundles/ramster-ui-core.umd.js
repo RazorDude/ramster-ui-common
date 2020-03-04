@@ -1378,15 +1378,24 @@
                     }
                     nextElement.forEach(( /**
                      * @param {?} item
-                     * @param {?} iIndex
                      * @return {?}
-                     */function (item, iIndex) {
+                     */function (item) {
                         /** @type {?} */
                         var innerValue = getNested(item, innerPath_1);
                         if (typeof innerValue !== 'undefined') {
                             // if the innerValue is an array too, merge it with the currentElement - this way we can have nested arrays without indexes
                             if (innerValue instanceof Array) {
-                                currentElement = currentElement.concat(innerValue);
+                                innerValue.forEach(( /**
+                                 * @param {?} innerValueItem
+                                 * @return {?}
+                                 */function (innerValueItem) {
+                                    if (currentElement.indexOf(innerValueItem) === -1) {
+                                        currentElement.push(innerValueItem);
+                                    }
+                                }));
+                                if (currentElement.indexOf(innerValue) === -1) {
+                                    currentElement.push(innerValue);
+                                }
                                 return;
                             }
                             currentElement.push(innerValue);

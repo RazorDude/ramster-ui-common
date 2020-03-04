@@ -1,3 +1,6 @@
+# 0.1.4
+- Fix for getNested - array items are now unique by default.
+
 # 0.1.3
 - Export bundle fix.
 

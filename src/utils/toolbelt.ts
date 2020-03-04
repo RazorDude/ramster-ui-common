@@ -51,15 +51,22 @@ export const getNested = (parent: any, field: string): any => {
 				for (let j = i + 1; j < fieldDataLength; j++) {
 					innerPath += `${fieldData[j]}${j < (fieldDataLength - 1) ? '.' : ''}`
 				}
-				nextElement.forEach((item, iIndex) => {
+				nextElement.forEach((item) => {
 					let innerValue = getNested(item, innerPath)
 					if (typeof innerValue !== 'undefined') {
 						// if the innerValue is an array too, merge it with the currentElement - this way we can have nested arrays without indexes
 						if (innerValue instanceof Array) {
-							currentElement = currentElement.concat(innerValue)
+							innerValue.forEach((innerValueItem) => {
+								if (currentElement.indexOf(innerValueItem) === -1) {
+									currentElement.push(innerValueItem)
+								}
+							})
+							if (currentElement.indexOf(innerValue) === -1) {
+								currentElement.push(innerValue)
+							}
 							return
 						}
-						 currentElement.push(innerValue)
+						currentElement.push(innerValue)
 					}
 				})
 				return currentElement

@@ -1143,16 +1143,26 @@ const getNested = (/**
                 }
                 nextElement.forEach((/**
                  * @param {?} item
-                 * @param {?} iIndex
                  * @return {?}
                  */
-                (item, iIndex) => {
+                (item) => {
                     /** @type {?} */
                     let innerValue = getNested(item, innerPath);
                     if (typeof innerValue !== 'undefined') {
                         // if the innerValue is an array too, merge it with the currentElement - this way we can have nested arrays without indexes
                         if (innerValue instanceof Array) {
-                            currentElement = currentElement.concat(innerValue);
+                            innerValue.forEach((/**
+                             * @param {?} innerValueItem
+                             * @return {?}
+                             */
+                            (innerValueItem) => {
+                                if (currentElement.indexOf(innerValueItem) === -1) {
+                                    currentElement.push(innerValueItem);
+                                }
+                            }));
+                            if (currentElement.indexOf(innerValue) === -1) {
+                                currentElement.push(innerValue);
+                            }
                             return;
                         }
                         currentElement.push(innerValue);
