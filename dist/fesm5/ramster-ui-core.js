@@ -232,6 +232,11 @@ var BasePageComponent = /** @class */ (function () {
          * @return {?}
          */
         function (data) { return _this.initialDataLoaded(data); }));
+        this.globalEventsService.layoutDataChanged$.pipe(takeUntil(this.destroyed)).subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        function (data) { return _this.layoutDataChanged(data); }));
         this.onInitMethodNames.forEach((/**
          * @param {?} methodName
          * @return {?}
@@ -285,6 +290,16 @@ var BasePageComponent = /** @class */ (function () {
         }));
     };
     /**
+     * @param {?} _data
+     * @return {?}
+     */
+    BasePageComponent.prototype.layoutDataChanged = /**
+     * @param {?} _data
+     * @return {?}
+     */
+    function (_data) {
+    };
+    /**
      * @return {?}
      */
     BasePageComponent.prototype.destructor = /**
@@ -316,6 +331,7 @@ var GlobalEventsService = /** @class */ (function () {
         this.triggerInitialDataLoadSource = new Subject();
         this.initialDataLoadedSource = new Subject();
         this.setLayoutDataSource = new Subject();
+        this.layoutDataChangedSource = new Subject();
         this.redirectSource = new Subject();
         this.notifySource = new Subject();
         this.toggleLoaderSource = new Subject();
@@ -323,6 +339,7 @@ var GlobalEventsService = /** @class */ (function () {
         this.triggerInitialDataLoad$ = this.triggerInitialDataLoadSource.asObservable();
         this.initialDataLoaded$ = this.initialDataLoadedSource.asObservable();
         this.setLayoutData$ = this.setLayoutDataSource.asObservable();
+        this.layoutDataChanged$ = this.layoutDataChangedSource.asObservable();
         this.redirect$ = this.redirectSource.asObservable();
         this.notify$ = this.notifySource.asObservable();
         this.toggleLoader$ = this.toggleLoaderSource.asObservable();
@@ -368,6 +385,17 @@ var GlobalEventsService = /** @class */ (function () {
      */
     function (data) {
         this.setLayoutDataSource.next(data);
+    };
+    /**
+     * @param {?} data
+     * @return {?}
+     */
+    GlobalEventsService.prototype.layoutDataChanged = /**
+     * @param {?} data
+     * @return {?}
+     */
+    function (data) {
+        this.layoutDataChangedSource.next(data);
     };
     /**
      * @param {?} route

@@ -9,6 +9,9 @@ export declare class GlobalEventsService {
     setLayoutDataSource: Subject<{
         [x: string]: any;
     }>;
+    layoutDataChangedSource: Subject<{
+        [x: string]: any;
+    }>;
     redirectSource: Subject<{
         route: string;
         options: GESRedirectOptionsInterface;
@@ -26,6 +29,9 @@ export declare class GlobalEventsService {
     setLayoutData$: import("rxjs").Observable<{
         [x: string]: any;
     }>;
+    layoutDataChanged$: import("rxjs").Observable<{
+        [x: string]: any;
+    }>;
     redirect$: import("rxjs").Observable<{
         route: string;
         options: GESRedirectOptionsInterface;
@@ -39,6 +45,7 @@ export declare class GlobalEventsService {
     triggerInitialDataLoad(): void;
     initialDataLoaded(data: any): void;
     setLayoutData(data: any): void;
+    layoutDataChanged(data: any): void;
     redirect(route: string, options?: GESRedirectOptionsInterface): void;
     notify(type: string, message: string): void;
     toggleLoader(active: boolean): void;

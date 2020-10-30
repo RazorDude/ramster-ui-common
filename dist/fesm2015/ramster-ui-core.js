@@ -206,6 +206,11 @@ class BasePageComponent {
          * @return {?}
          */
         (data) => this.initialDataLoaded(data)));
+        this.globalEventsService.layoutDataChanged$.pipe(takeUntil(this.destroyed)).subscribe((/**
+         * @param {?} data
+         * @return {?}
+         */
+        (data) => this.layoutDataChanged(data)));
         this.onInitMethodNames.forEach((/**
          * @param {?} methodName
          * @return {?}
@@ -248,6 +253,12 @@ class BasePageComponent {
         }));
     }
     /**
+     * @param {?} _data
+     * @return {?}
+     */
+    layoutDataChanged(_data) {
+    }
+    /**
      * @return {?}
      */
     destructor() {
@@ -272,6 +283,7 @@ class GlobalEventsService {
         this.triggerInitialDataLoadSource = new Subject();
         this.initialDataLoadedSource = new Subject();
         this.setLayoutDataSource = new Subject();
+        this.layoutDataChangedSource = new Subject();
         this.redirectSource = new Subject();
         this.notifySource = new Subject();
         this.toggleLoaderSource = new Subject();
@@ -279,6 +291,7 @@ class GlobalEventsService {
         this.triggerInitialDataLoad$ = this.triggerInitialDataLoadSource.asObservable();
         this.initialDataLoaded$ = this.initialDataLoadedSource.asObservable();
         this.setLayoutData$ = this.setLayoutDataSource.asObservable();
+        this.layoutDataChanged$ = this.layoutDataChangedSource.asObservable();
         this.redirect$ = this.redirectSource.asObservable();
         this.notify$ = this.notifySource.asObservable();
         this.toggleLoader$ = this.toggleLoaderSource.asObservable();
@@ -309,6 +322,13 @@ class GlobalEventsService {
      */
     setLayoutData(data) {
         this.setLayoutDataSource.next(data);
+    }
+    /**
+     * @param {?} data
+     * @return {?}
+     */
+    layoutDataChanged(data) {
+        this.layoutDataChangedSource.next(data);
     }
     /**
      * @param {?} route

@@ -19,7 +19,12 @@ export declare class BasePageComponent implements OnInit, OnDestroy {
     ngOnInit(): void;
     reset(): void;
     sendPageLoadedEvent(): void;
-    initialDataLoaded(data: any): void;
+    initialDataLoaded(data: {
+        [fieldName: string]: any;
+    }): void;
+    layoutDataChanged(_data: {
+        [fieldName: string]: any;
+    }): void;
     destructor(): void;
     ngOnDestroy(): void;
 }
