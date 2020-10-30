@@ -1,3 +1,6 @@
+# 0.3.1
+- Hotfix.
+
 # 0.3.0
 - Added a "layoutDataChanged" method to the globalEventsService and the corresponding listener to the basePageComponent.
 
