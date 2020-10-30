@@ -8,6 +8,7 @@ export class GlobalEventsService {
 	triggerInitialDataLoadSource = new Subject<void>()
 	initialDataLoadedSource = new Subject<any>()
 	setLayoutDataSource = new Subject<{[x: string]: any}>()
+	layoutDataChangedSource = new Subject<{[x: string]: any}>()
 	redirectSource = new Subject<{route: string, options: GESRedirectOptionsInterface}>()
 	notifySource = new Subject<{type: string, message: string}>()
 	toggleLoaderSource = new Subject<boolean>()
@@ -16,6 +17,7 @@ export class GlobalEventsService {
 	triggerInitialDataLoad$ = this.triggerInitialDataLoadSource.asObservable()
 	initialDataLoaded$ = this.initialDataLoadedSource.asObservable()
 	setLayoutData$ = this.setLayoutDataSource.asObservable()
+	layoutDataChanged$ = this.layoutDataChangedSource.asObservable()
 	redirect$ = this.redirectSource.asObservable()
 	notify$ = this.notifySource.asObservable()
 	toggleLoader$ = this.toggleLoaderSource.asObservable()
@@ -34,6 +36,10 @@ export class GlobalEventsService {
 
 	setLayoutData(data): void {
 		this.setLayoutDataSource.next(data)
+	}
+
+	layoutDataChanged(data): void {
+		this.layoutDataChangedSource.next(data)
 	}
 
 	redirect(route: string, options?: GESRedirectOptionsInterface): void {

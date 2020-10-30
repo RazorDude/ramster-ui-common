@@ -1,3 +1,6 @@
+# 0.3.0
+- Added a "layoutDataChanged" method to the globalEventsService and the corresponding listener to the basePageComponent.
+
 # 0.2.0
 - Updated getNested - added an options objects, currently in the form of ``{arrayItemsShouldBeUnique?: boolean}``.
 

@@ -23,6 +23,7 @@ export class BasePageComponent implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		this.globalEventsService.initialDataLoaded$.pipe(takeUntil(this.destroyed)).subscribe((data) => this.initialDataLoaded(data))
+		this.globalEventsService.layoutDataChanged$.pipe(takeUntil(this.destroyed)).subscribe((data) => this.layoutDataChanged(data))
 		this.onInitMethodNames.forEach((methodName) => {
 			if (typeof this[methodName] === 'function') {
 				this[methodName]()
@@ -39,7 +40,7 @@ export class BasePageComponent implements OnInit, OnDestroy {
 		this.globalEventsService.pageLoaded({queryParams: this.queryParams, routeParams: this.routeParams})
 	}
 
-	initialDataLoaded(data): void {
+	initialDataLoaded(data: {[fieldName: string]: any}): void {
 		this.loggedInUser = data.user
 		this.queryParams = data.queryParams
 		this.routeParams = data.routeParams
@@ -48,6 +49,9 @@ export class BasePageComponent implements OnInit, OnDestroy {
 				this[methodName](data)
 			}
 		})
+	}
+
+	layoutDataChanged(_data: {[fieldName: string]: any}) {
 	}
 
 	destructor() {
