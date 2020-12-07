@@ -1,3 +1,6 @@
+# 0.4.0
+- Added a "getLayoutData" method to the globalEventsService.
+
 # 0.3.1
 - Hotfix.
 

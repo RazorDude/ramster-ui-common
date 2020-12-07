@@ -9,6 +9,13 @@ export declare class GlobalEventsService {
     setLayoutDataSource: Subject<{
         [x: string]: any;
     }>;
+    getLayoutDataSource: Subject<{
+        eventId: number;
+        eventType: string;
+        payload?: {
+            [x: string]: any;
+        };
+    }>;
     layoutDataChangedSource: Subject<{
         [x: string]: any;
     }>;
@@ -29,6 +36,13 @@ export declare class GlobalEventsService {
     setLayoutData$: import("rxjs").Observable<{
         [x: string]: any;
     }>;
+    getLayoutData$: import("rxjs").Observable<{
+        eventId: number;
+        eventType: string;
+        payload?: {
+            [x: string]: any;
+        };
+    }>;
     layoutDataChanged$: import("rxjs").Observable<{
         [x: string]: any;
     }>;
@@ -45,6 +59,9 @@ export declare class GlobalEventsService {
     triggerInitialDataLoad(): void;
     initialDataLoaded(data: any): void;
     setLayoutData(data: any): void;
+    getLayoutData(): Promise<{
+        [fieldName: string]: any;
+    }>;
     layoutDataChanged(data: any): void;
     redirect(route: string, options?: GESRedirectOptionsInterface): void;
     notify(type: string, message: string): void;

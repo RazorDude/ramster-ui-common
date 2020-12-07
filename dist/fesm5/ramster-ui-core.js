@@ -331,6 +331,7 @@ var GlobalEventsService = /** @class */ (function () {
         this.triggerInitialDataLoadSource = new Subject();
         this.initialDataLoadedSource = new Subject();
         this.setLayoutDataSource = new Subject();
+        this.getLayoutDataSource = new Subject();
         this.layoutDataChangedSource = new Subject();
         this.redirectSource = new Subject();
         this.notifySource = new Subject();
@@ -339,6 +340,7 @@ var GlobalEventsService = /** @class */ (function () {
         this.triggerInitialDataLoad$ = this.triggerInitialDataLoadSource.asObservable();
         this.initialDataLoaded$ = this.initialDataLoadedSource.asObservable();
         this.setLayoutData$ = this.setLayoutDataSource.asObservable();
+        this.getLayoutData$ = this.getLayoutDataSource.asObservable();
         this.layoutDataChanged$ = this.layoutDataChangedSource.asObservable();
         this.redirect$ = this.redirectSource.asObservable();
         this.notify$ = this.notifySource.asObservable();
@@ -385,6 +387,36 @@ var GlobalEventsService = /** @class */ (function () {
      */
     function (data) {
         this.setLayoutDataSource.next(data);
+    };
+    /**
+     * @return {?}
+     */
+    GlobalEventsService.prototype.getLayoutData = /**
+     * @return {?}
+     */
+    function () {
+        var _this = this;
+        return new Promise((/**
+         * @param {?} resolve
+         * @return {?}
+         */
+        function (resolve) {
+            /** @type {?} */
+            var ts = (new Date()).valueOf();
+            /** @type {?} */
+            var sub = _this.getLayoutData$.subscribe((/**
+             * @param {?} data
+             * @return {?}
+             */
+            function (data) {
+                if ((data.eventId !== ts) || (data.eventType !== 'reply')) {
+                    return;
+                }
+                sub.unsubscribe();
+                resolve(data.payload);
+            }));
+            _this.getLayoutDataSource.next({ eventId: ts, eventType: 'request' });
+        }));
     };
     /**
      * @param {?} data

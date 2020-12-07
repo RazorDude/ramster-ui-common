@@ -8,6 +8,7 @@ export class GlobalEventsService {
 	triggerInitialDataLoadSource = new Subject<void>()
 	initialDataLoadedSource = new Subject<any>()
 	setLayoutDataSource = new Subject<{[x: string]: any}>()
+	getLayoutDataSource = new Subject<{eventId: number, eventType: string, payload?: {[x: string]: any}}>()
 	layoutDataChangedSource = new Subject<{[x: string]: any}>()
 	redirectSource = new Subject<{route: string, options: GESRedirectOptionsInterface}>()
 	notifySource = new Subject<{type: string, message: string}>()
@@ -17,6 +18,7 @@ export class GlobalEventsService {
 	triggerInitialDataLoad$ = this.triggerInitialDataLoadSource.asObservable()
 	initialDataLoaded$ = this.initialDataLoadedSource.asObservable()
 	setLayoutData$ = this.setLayoutDataSource.asObservable()
+	getLayoutData$ = this.getLayoutDataSource.asObservable()
 	layoutDataChanged$ = this.layoutDataChangedSource.asObservable()
 	redirect$ = this.redirectSource.asObservable()
 	notify$ = this.notifySource.asObservable()
@@ -36,6 +38,20 @@ export class GlobalEventsService {
 
 	setLayoutData(data): void {
 		this.setLayoutDataSource.next(data)
+	}
+
+	getLayoutData(): Promise<{[fieldName: string]: any}> {
+		return new Promise((resolve) => {
+			const ts = (new Date()).valueOf()
+			const sub = this.getLayoutData$.subscribe((data) => {
+				if ((data.eventId !== ts) || (data.eventType !== 'reply')) {
+					return
+				}
+				sub.unsubscribe()
+				resolve(data.payload)
+			})
+			this.getLayoutDataSource.next({eventId: ts, eventType: 'request'})
+		})
 	}
 
 	layoutDataChanged(data): void {

@@ -421,6 +421,7 @@
             this.triggerInitialDataLoadSource = new rxjs.Subject();
             this.initialDataLoadedSource = new rxjs.Subject();
             this.setLayoutDataSource = new rxjs.Subject();
+            this.getLayoutDataSource = new rxjs.Subject();
             this.layoutDataChangedSource = new rxjs.Subject();
             this.redirectSource = new rxjs.Subject();
             this.notifySource = new rxjs.Subject();
@@ -429,6 +430,7 @@
             this.triggerInitialDataLoad$ = this.triggerInitialDataLoadSource.asObservable();
             this.initialDataLoaded$ = this.initialDataLoadedSource.asObservable();
             this.setLayoutData$ = this.setLayoutDataSource.asObservable();
+            this.getLayoutData$ = this.getLayoutDataSource.asObservable();
             this.layoutDataChanged$ = this.layoutDataChangedSource.asObservable();
             this.redirect$ = this.redirectSource.asObservable();
             this.notify$ = this.notifySource.asObservable();
@@ -475,6 +477,34 @@
          */
             function (data) {
                 this.setLayoutDataSource.next(data);
+            };
+        /**
+         * @return {?}
+         */
+        GlobalEventsService.prototype.getLayoutData = /**
+         * @return {?}
+         */
+            function () {
+                var _this = this;
+                return new Promise(( /**
+                 * @param {?} resolve
+                 * @return {?}
+                 */function (resolve) {
+                    /** @type {?} */
+                    var ts = (new Date()).valueOf();
+                    /** @type {?} */
+                    var sub = _this.getLayoutData$.subscribe(( /**
+                     * @param {?} data
+                     * @return {?}
+                     */function (data) {
+                        if ((data.eventId !== ts) || (data.eventType !== 'reply')) {
+                            return;
+                        }
+                        sub.unsubscribe();
+                        resolve(data.payload);
+                    }));
+                    _this.getLayoutDataSource.next({ eventId: ts, eventType: 'request' });
+                }));
             };
         /**
          * @param {?} data

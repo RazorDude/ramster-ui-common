@@ -283,6 +283,7 @@ class GlobalEventsService {
         this.triggerInitialDataLoadSource = new Subject();
         this.initialDataLoadedSource = new Subject();
         this.setLayoutDataSource = new Subject();
+        this.getLayoutDataSource = new Subject();
         this.layoutDataChangedSource = new Subject();
         this.redirectSource = new Subject();
         this.notifySource = new Subject();
@@ -291,6 +292,7 @@ class GlobalEventsService {
         this.triggerInitialDataLoad$ = this.triggerInitialDataLoadSource.asObservable();
         this.initialDataLoaded$ = this.initialDataLoadedSource.asObservable();
         this.setLayoutData$ = this.setLayoutDataSource.asObservable();
+        this.getLayoutData$ = this.getLayoutDataSource.asObservable();
         this.layoutDataChanged$ = this.layoutDataChangedSource.asObservable();
         this.redirect$ = this.redirectSource.asObservable();
         this.notify$ = this.notifySource.asObservable();
@@ -322,6 +324,32 @@ class GlobalEventsService {
      */
     setLayoutData(data) {
         this.setLayoutDataSource.next(data);
+    }
+    /**
+     * @return {?}
+     */
+    getLayoutData() {
+        return new Promise((/**
+         * @param {?} resolve
+         * @return {?}
+         */
+        (resolve) => {
+            /** @type {?} */
+            const ts = (new Date()).valueOf();
+            /** @type {?} */
+            const sub = this.getLayoutData$.subscribe((/**
+             * @param {?} data
+             * @return {?}
+             */
+            (data) => {
+                if ((data.eventId !== ts) || (data.eventType !== 'reply')) {
+                    return;
+                }
+                sub.unsubscribe();
+                resolve(data.payload);
+            }));
+            this.getLayoutDataSource.next({ eventId: ts, eventType: 'request' });
+        }));
     }
     /**
      * @param {?} data
